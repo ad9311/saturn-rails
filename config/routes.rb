@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   root 'dashboard#index'
-  resources :dashboard, only: %[index]
+  devise_for :users, skip: [:registrations]
+  resources :dashboard, only: %i[index]
+  resources :recoveries, only: %i[index show new create destroy]
 end

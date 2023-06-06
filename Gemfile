@@ -54,6 +54,9 @@ gem 'bootsnap', require: false
 # Use haml-rails to display templates in haml format
 gem 'haml-rails'
 
+# Use devise for user authentication
+gem 'devise'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -71,6 +74,9 @@ group :development do
 
   # Use html2haml to converte html to haml
   gem 'html2haml'
+
+  # Use hirb for rails console
+  gem 'hirb'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

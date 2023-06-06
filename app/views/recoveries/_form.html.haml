@@ -1,0 +1,10 @@
+= form_for @recovery do |f|
+  = f.label :title
+  = f.text_field :title
+  = f.label :description
+  = f.text_area :description
+  = f.label :start_date
+  = f.date_field :start_date
+  = f.label :target_date
+  = f.date_field :target_date
+  = f.submit "Submit"
