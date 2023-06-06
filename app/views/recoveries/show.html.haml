@@ -1,1 +1,4 @@
 = render "recovery", recovery: @recovery
+- if Time.zone.now.hour >= 15 && Time.zone.now.hour <= 16
+  = render "report_form", recovery:@recovery
+  
