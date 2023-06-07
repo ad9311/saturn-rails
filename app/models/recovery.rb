@@ -2,16 +2,17 @@
 #
 # Table name: recoveries
 #
-#  id           :bigint           not null, primary key
-#  description  :text
-#  record       :integer          default(0), not null
-#  report_dates :jsonb            not null
-#  start_date   :date             not null
-#  target_date  :date             not null
-#  title        :string           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :bigint           not null
+#  id             :bigint           not null, primary key
+#  current_record :integer          default(0), not null
+#  description    :text
+#  max_record     :integer          default(0), not null
+#  report_dates   :jsonb            not null
+#  start_date     :date             not null
+#  target_date    :date             not null
+#  title          :string           not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #

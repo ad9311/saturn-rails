@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_171450) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_222858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,10 +20,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_171450) do
     t.date "start_date", null: false
     t.date "target_date", null: false
     t.jsonb "report_dates", default: [], null: false
-    t.integer "record", default: 0, null: false
+    t.integer "current_record", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "max_record", default: 0, null: false
     t.index ["user_id"], name: "index_recoveries_on_user_id"
   end
 

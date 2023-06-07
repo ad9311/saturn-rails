@@ -23,17 +23,22 @@ class RecoveriesController < ApplicationController
 
   def submit_report
     current_date = Time.zone.now.to_date
-    last_report = @recovery.report_dates.last.to_date
-    if current_date > last_report
-      @recovery.update(
-        report_dates: @recovery.report_dates.push(Time.zone.now),
-        record: @recovery.record + 1
-      )
-    end
+    last_report = @recovery.report_dates.last&.to_date
+
+    update_report if last_report.nil? || current_date > last_report
+
     redirect_to recovery_path(@recovery)
   end
 
   private
+
+  def update_report
+    @recovery.update(
+      report_dates: @recovery.report_dates.push(Time.zone.now),
+      max_record: @recovery.current_record + 1,
+      current_record: @recovery.current_record + 1
+    )
+  end
 
   def recovery_params
     params.require(:recovery).permit(:title, :description, :start_date, :target_date)
