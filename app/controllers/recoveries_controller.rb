@@ -1,5 +1,5 @@
 class RecoveriesController < ApplicationController
-  before_action :set_recovery, only: %i[show submit_report]
+  before_action :set_recovery, only: %i[show destroy submit_report]
   before_action :recovery_params, only: %i[create]
 
   def index
@@ -28,6 +28,14 @@ class RecoveriesController < ApplicationController
     update_report if last_report.nil? || current_date > last_report
 
     redirect_to recovery_path(@recovery)
+  end
+
+  def destroy
+    if @recovery.destroy
+      redirect_to recoveries_path
+    else
+      redirect_to recovery_path(@recovery)
+    end
   end
 
   private
