@@ -21,4 +21,6 @@
 class Award < ApplicationRecord
   belongs_to :user
   belongs_to :awardable, polymorphic: true
+
+  validates :title, presence: true
 end
