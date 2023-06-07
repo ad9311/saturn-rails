@@ -1,0 +1,31 @@
+- days = recovery_target_days recovery
+- progress = days.zero? ? 0 : (100 * recovery.current_record) / days
+%article.px-3.pt-2.pb-4.mx-auto.max-w-lg.rounded-md.border.bg-slate-50
+  %h3.mb-3.text-xl.font-bold= recovery.title
+  .px-3.py-2.bg-neutral-100.rounded-md
+    %p.text-neutral-500= recovery.description
+  .w-fit.mx-auto.mt-8.mb-5.grid.grid-cols-2.gap-10
+    .text-center
+      %strong Start date
+      %br
+      %span= recovery.start_date.strftime('%d %B')
+    .text-center
+      %strong Target date
+      %br
+      %span= recovery.target_date.strftime('%d %B')
+  .mb-2.pr-3.max-w-lg.flex.items-center.justify-end
+    %span.text-xs Days
+  .pr-5.max-w-lg.flex.items-center.justify-between
+    %p Max record:
+    %strong.number.text-xl.text-green-500= recovery.max_record
+  .pr-5.max-w-lg.flex.items-center.justify-between
+    %p Current record:
+    %strong.number.text-xl.text-blue-500= recovery.current_record
+  .pr-5.max-w-lg.flex.items-center.justify-between
+    %p Current target:
+    %strong.number.text-xl.text-yellow-500= days
+  .mt-5.mr-5.bg-neutral-200.leading-none.rounded-md
+    .bg-green-500.leading-none.rounded-md.text-transparent{ style: "width: #{progress}%;", title: "#{progress}%" } *
+  - if !recovery_last_report_today?(recovery) && (Time.zone.now.hour >= 22 && Time.zone.now.hour <= 23)
+    .mt-5
+      = render "report_form", recovery:@recovery

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
 
 @tailwind base;
@@ -12,7 +12,7 @@ html {
 
 body {
   @apply text-slate-700;
-  font-family: 'Geologica', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .number {
