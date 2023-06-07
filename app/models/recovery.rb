@@ -31,6 +31,7 @@ class Recovery < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 500 }
   validates :start_date, :target_date, presence: true
+  validates :target_days, presence: true
 
   before_create :calculate_target_days
 
