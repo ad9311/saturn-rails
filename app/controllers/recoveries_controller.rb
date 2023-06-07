@@ -52,10 +52,12 @@ class RecoveriesController < ApplicationController
       current_record: current_record_plus,
       completed:
     )
+    return unless completed
+
     Award.create(
       user: current_user, title: "Completed recovery: #{@recovery.title}",
       awardable: @recovery
-    ) if completed
+    )
   end
 
   def recovery_params

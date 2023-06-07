@@ -18,6 +18,8 @@ Metrics/BlockLength:
     - "lib/tasks/auto_annotate_models.rake"
 Metrics/AbcSize:
   Enabled: false
+Metrics/MethodLength:
+  Max: 20
 
 Style/Documentation:
   Enabled: false
