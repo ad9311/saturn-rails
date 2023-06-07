@@ -2,7 +2,7 @@ namespace :recoveries do
   desc "Checks for each recovery's report"
   task check_recoveries_report: :environment do
     current_date = Time.zone.now.to_date
-    Recovery.all.each do |recovery|
+    Recovery.where(completed: false).each do |recovery|
       last_report = recovery.report_dates.last
 
       next if recovery.start_date == current_date

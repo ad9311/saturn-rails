@@ -41,10 +41,14 @@ class RecoveriesController < ApplicationController
   private
 
   def update_report
+    max_record = @recovery.max_record
+    current_record_plus = @recovery.current_record
+    completed = current_record_plus == @recovery.target_days
     @recovery.update(
       report_dates: @recovery.report_dates.push(Time.zone.now),
-      max_record: @recovery.current_record + 1,
-      current_record: @recovery.current_record + 1
+      max_record: [current_record_plus, max_record].max,
+      current_record: current_record_plus,
+      completed:
     )
   end
 

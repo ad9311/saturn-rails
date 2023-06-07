@@ -1,5 +1,4 @@
-- days = recovery_target_days recovery
-- progress = days.zero? ? 0 : (100 * recovery.current_record) / days
+- progress = recovery.target_days.zero? ? 0 : (100 * recovery.current_record) / recovery.target_days
 = link_to recovery_path(recovery), class: "block max-w-sm" do
   %article.px-3.pt-2.pb-4.rounded-md.border.bg-slate-50.hover:bg-slate-100
     %h3.text-xl.font-bold= recovery.title
@@ -13,6 +12,6 @@
       %strong.number.text-xl.text-blue-500= recovery.current_record
     .pr-5.max-w-sm.flex.items-center.justify-between
       %p Current target:
-      %strong.number.text-xl.text-yellow-500= days
+      %strong.number.text-xl.text-yellow-500= recovery.target_days
     .mt-5.mr-5.bg-neutral-200.leading-none.rounded-md
       .bg-green-500.leading-none.rounded-md.text-transparent{ style: "width: #{progress}%;", title: "#{progress}%" } *

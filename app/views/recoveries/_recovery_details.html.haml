@@ -1,5 +1,4 @@
-- days = recovery_target_days recovery
-- progress = days.zero? ? 0 : (100 * recovery.current_record) / days
+- progress = recovery.target_days.zero? ? 0 : (100 * recovery.current_record) / recovery.target_days
 %article.px-3.pt-2.pb-4.mx-auto.max-w-lg.rounded-md.border.bg-slate-50
   .flex.items-start.justify-between
     %h3.mb-3.text-xl.font-bold= recovery.title
@@ -25,7 +24,7 @@
     %strong.number.text-xl.text-blue-500= recovery.current_record
   .pr-5.max-w-lg.flex.items-center.justify-between
     %p Current target:
-    %strong.number.text-xl.text-yellow-500= days
+    %strong.number.text-xl.text-yellow-500= recovery.target_days
   .mt-5.mr-5.bg-neutral-200.leading-none.rounded-md
     .bg-green-500.leading-none.rounded-md.text-transparent{ style: "width: #{progress}%;", title: "#{progress}%" } *
   - if !recovery_last_report_today?(recovery) && (Time.zone.now.hour >= 22 && Time.zone.now.hour <= 23)
