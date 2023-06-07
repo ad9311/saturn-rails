@@ -1,9 +1,17 @@
 module ApplicationHelper
-  def recovery_last_report_today?(recovery)
-    return false if recovery.report_dates.last.nil?
+  def allow_submit_report?(recovery)
+    current_date = Time.zone.now.to_date
+    current_time = Time.zone.now
+    last_report = recovery.report_dates.last&.to_date
 
-    return true if Date.parse(recovery.report_dates.last) == Time.zone.now.to_date
+    return false if current_time.hour >= 13 && current_time.hour <= 23
 
-    false
+    return false if recovery.completed
+
+    return false unless current_date >= recovery.start_date
+
+    return false if current_date >= last_report
+
+    true
   end
 end

@@ -23,7 +23,7 @@ class RecoveriesController < ApplicationController
 
   def submit_report
     current_date = Time.zone.now.to_date
-    redirect_to recovery_path(@recovery) if current_date >= @recovery.start_date
+    redirect_to recovery_path(@recovery) and return unless current_date >= @recovery.start_date
 
     last_report = @recovery.report_dates.last&.to_date
 
@@ -44,7 +44,7 @@ class RecoveriesController < ApplicationController
 
   def update_report
     max_record = @recovery.max_record
-    current_record_plus = @recovery.current_record
+    current_record_plus = @recovery.current_record + 1
     completed = current_record_plus == @recovery.target_days
     @recovery.update(
       report_dates: @recovery.report_dates.push(Time.zone.now),

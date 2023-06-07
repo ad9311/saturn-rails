@@ -37,6 +37,6 @@ class Recovery < ApplicationRecord
   before_update :calculate_target_days
 
   def calculate_target_days
-    self.target_days = (target_date - start_date).to_i
+    self.target_days = (target_date - start_date).to_i + 1
   end
 end

@@ -19,5 +19,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Award < ApplicationRecord
+  belongs_to :user
   belongs_to :awardable, polymorphic: true
 end
