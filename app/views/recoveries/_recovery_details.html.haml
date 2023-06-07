@@ -1,5 +1,5 @@
 - progress = recovery.target_days.zero? ? 0 : (100 * recovery.current_record) / recovery.target_days
-%article.px-3.pt-2.pb-4.mx-auto.max-w-lg.rounded-md.border.bg-slate-50
+%article.px-3.pt-2.pb-5.mx-auto.max-w-lg.rounded-md.border.bg-slate-50
   .flex.items-start.justify-between
     %h3.mb-3.text-xl.font-bold= recovery.title
     = button_to "Delete", recovery_path(recovery), method: :delete, class: "px-2 py-1 text-xs text-white rounded bg-rose-500 hover:bg-rose-600"
@@ -25,11 +25,15 @@
   .pr-5.max-w-lg.flex.items-center.justify-between
     %p Current target:
     %strong.number.text-xl.text-yellow-500= recovery.target_days
-  .mt-5.mr-5.bg-neutral-200.leading-none.rounded-md
+  .mt-5
+    %span.text-sm.text-neutral-500 Progress
+  .mr-5.bg-neutral-200.leading-none.rounded-md
     .bg-green-500.leading-none.rounded-md.text-transparent{ style: "width: #{progress}%;", title: "#{progress}%" } *
   - if allow_submit_report?(recovery)
     .mt-5
       = button_to "Submit report", "/recoveries/#{recovery.id}/report", method: :patch, class: "px-3 py-2 text-white rounded-md bg-blue-400 hover:bg-blue-500 cursor-pointer"
   - if recovery.completed
-    .w-fit.mt-5.px-3.py-2.text-white.rounded-md.bg-green-500 Completed!
+    .mt-5.flex.items-center.justify-between
+      .w-fit.px-3.py-2.text-white.rounded-md.bg-green-500 Completed!
+      = link_to "Renew", "/recoveries/#{recovery.id}/renew", class: "px-3 py-2 text-white rounded bg-blue-400 hover:bg-blue-500"
   

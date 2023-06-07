@@ -1,0 +1,7 @@
+.mx-auto.max-w-xl.mt-3.mb-5
+  .flex.items-center
+    = link_to recoveries_path, class: "block mr-3" do
+      %button.px-2.py-1.text-white.rounded.bg-green-500.hover:bg-green-600{ type: "button" } Back
+    %h2.text-2xl.font-bold New recovery
+.max-w-xl.mx-auto
+  = render "renew_form"

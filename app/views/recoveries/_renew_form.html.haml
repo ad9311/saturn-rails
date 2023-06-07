@@ -1,0 +1,14 @@
+- unless @recovery.errors.messages.empty?
+  %p.text-xl.font-bold Errors:
+  %ul.mb-5
+    - @recovery.errors.messages.each_pair do |k, v|
+      %li.text-rose-600= "#{k.to_s.humanize} #{v.join(',')}"
+= form_for @recovery, url: "/recoveries/#{@recovery.id}/renew", method: :patch do |f|
+  .form-group
+    = f.label :start_date
+    = f.date_field :start_date
+  .form-group
+    = f.label :target_date
+    = f.date_field :target_date
+  .form-actions
+    = f.submit "Submit"

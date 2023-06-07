@@ -1,6 +1,7 @@
 class RecoveriesController < ApplicationController
   before_action :set_recovery, only: %i[show destroy submit_report renew submit_renew]
   before_action :recovery_params, only: %i[create]
+  before_action :recovery_renew_params, only: %i[submit_renew]
 
   def index
     @recoveries = current_user.recoveries
@@ -32,10 +33,11 @@ class RecoveriesController < ApplicationController
     redirect_to recovery_path(@recovery)
   end
 
-  def renew
-  end
+  def renew; end
 
   def submit_renew
+    @recovery.update(**recovery_renew_params, current_record: 0, completed: false);
+    redirect_to recovery_path(@recovery)
   end
 
   def destroy
@@ -72,5 +74,9 @@ class RecoveriesController < ApplicationController
 
   def set_recovery
     @recovery = Recovery.find(params[:id])
+  end
+
+  def recovery_renew_params
+    params.require(:recovery).permit(:start_date, :target_date)
   end
 end
