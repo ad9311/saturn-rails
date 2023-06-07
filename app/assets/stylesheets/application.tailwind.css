@@ -15,6 +15,30 @@ body {
   font-family: 'Nunito Sans', sans-serif;
 }
 
+.form-group {
+  @apply mb-3;
+}
+
+.form-group label {
+  @apply block italic text-neutral-400;
+}
+
+.form-group input {
+  @apply px-3 py-2 w-full rounded-md;
+}
+
+.form-group textarea {
+  @apply px-3 py-2 w-full h-32 rounded-md resize-none;
+}
+
+.form-actions {
+  @apply mt-5;
+}
+
+.form-actions input {
+  @apply px-2 py-1 text-white rounded bg-blue-500 hover:bg-blue-600 cursor-pointer;
+}
+
 .number {
   font-family: 'Kdam Thmor Pro', sans-serif;
 }

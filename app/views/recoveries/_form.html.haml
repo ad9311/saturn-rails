@@ -1,11 +1,16 @@
-%p= @recovery.errors.messages
+-# %p= @recovery.errors.messages
 = form_for @recovery do |f|
-  = f.label :title
-  = f.text_field :title
-  = f.label :description
-  = f.text_area :description
-  = f.label :start_date
-  = f.date_field :start_date
-  = f.label :target_date
-  = f.date_field :target_date
-  = f.submit "Submit"
+  .form-group
+    = f.label :title
+    = f.text_field :title
+  .form-group
+    = f.label :description
+    = f.text_area :description
+  .form-group
+    = f.label :start_date
+    = f.date_field :start_date
+  .form-group
+    = f.label :target_date
+    = f.date_field :target_date
+  .form-actions
+    = f.submit "Submit"
