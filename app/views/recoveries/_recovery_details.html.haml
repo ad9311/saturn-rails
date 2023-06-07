@@ -17,14 +17,14 @@
   .mb-2.pr-3.max-w-lg.flex.items-center.justify-end
     %span.text-xs Days
   .pr-5.max-w-lg.flex.items-center.justify-between
+    %p Target:
+    %strong.number.text-xl.text-yellow-500= recovery.target_days
+  .pr-5.max-w-lg.flex.items-center.justify-between
     %p Max record:
     %strong.number.text-xl.text-green-500= recovery.max_record
   .pr-5.max-w-lg.flex.items-center.justify-between
     %p Current record:
     %strong.number.text-xl.text-blue-500= recovery.current_record
-  .pr-5.max-w-lg.flex.items-center.justify-between
-    %p Current target:
-    %strong.number.text-xl.text-yellow-500= recovery.target_days
   .mt-5
     %span.text-sm.text-neutral-500 Progress
   .mr-5.bg-neutral-200.leading-none.rounded-md
