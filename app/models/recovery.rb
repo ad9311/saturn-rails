@@ -5,6 +5,7 @@
 #  id             :bigint           not null, primary key
 #  current_record :integer          default(0), not null
 #  description    :text
+#  favorite       :boolean          default(FALSE), not null
 #  max_record     :integer          default(0), not null
 #  report_dates   :jsonb            not null
 #  start_date     :date             not null

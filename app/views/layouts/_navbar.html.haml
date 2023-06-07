@@ -1,0 +1,6 @@
+.bg-blue-300
+  .container.p-3.mx-auto
+    .flex.items-center.justify-between
+      = link_to root_path do
+        %h1.text-xl.font-bold SaturnApp
+      = button_to "Sign out",  destroy_user_session_path, method: :delete, class: "px-2 py-1 text-white rounded bg-rose-500 hover:bg-rose-600"

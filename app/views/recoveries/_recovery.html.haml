@@ -1,9 +1,18 @@
-%article
-  %h3= recovery.title
-  %p= recovery.description
-  %span= recovery.current_record
-  %span= recovery.max_record
-  %br
-  %span= recovery.start_date
-  %br
-  %span= recovery.target_date
+- days = recovery_target_days recovery
+- progress = (100 * recovery.current_record) / days
+= link_to recovery_path(recovery), class: "block max-w-sm" do
+  %article.px-3.pt-2.pb-4.rounded-md.border.bg-slate-50.hover:bg-slate-100
+    %h.text-xl.font-bold= recovery.title
+    .mb-2.pr-3.max-w-sm.flex.items-center.justify-end
+      %span.text-xs Days
+    .pr-5.max-w-sm.flex.items-center.justify-between
+      %p Max record:
+      %strong.number.text-xl= recovery.max_record
+    .pr-5.max-w-sm.flex.items-center.justify-between
+      %p Current record:
+      %strong.number.text-xl= recovery.current_record
+    .pr-5.max-w-sm.flex.items-center.justify-between
+      %p Current target:
+      %strong.number.text-xl= days
+    .mt-5.mr-5.bg-neutral-200.leading-none.rounded-md
+      .bg-green-500.leading-none.rounded-md.text-transparent{ style: "width: #{progress}%;", title: "#{progress}%" } *

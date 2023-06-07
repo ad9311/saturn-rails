@@ -1,3 +1,5 @@
-%h2 Your recoveries
-- @recoveries.each do |recovery|
-  = render "recovery", recovery:
+.mt-3.mb-5
+  %h2.text-2xl.font-bold Recoveries
+%ul
+  - @recoveries.each do |recovery|
+    %li.mb-5= render "recovery", recovery:

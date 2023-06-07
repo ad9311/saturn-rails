@@ -10,6 +10,7 @@
     -# = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
-    = button_to "Sign out",  destroy_user_session_path, method: :delete
-    %main
+    %header
+      = render "layouts/navbar"
+    %main.px-3
       = yield
