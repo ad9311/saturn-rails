@@ -23,6 +23,8 @@ class RecoveriesController < ApplicationController
 
   def submit_report
     current_date = Time.zone.now.to_date
+    redirect_to recovery_path(@recovery) if current_date >= @recovery.start_date
+
     last_report = @recovery.report_dates.last&.to_date
 
     update_report if last_report.nil? || current_date > last_report
@@ -50,6 +52,10 @@ class RecoveriesController < ApplicationController
       current_record: current_record_plus,
       completed:
     )
+    Award.create(
+      user: current_user, title: "Completed recovery: #{@recovery.title}",
+      awardable: @recovery
+    ) if completed
   end
 
   def recovery_params

@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_07_143434) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_171636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "awards", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "awardable_type"
+    t.integer "awardable_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_awards_on_user_id"
+  end
 
   create_table "recoveries", force: :cascade do |t|
     t.string "title", null: false
@@ -49,5 +59,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_143434) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "awards", "users"
   add_foreign_key "recoveries", "users"
 end

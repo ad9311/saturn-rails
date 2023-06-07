@@ -27,13 +27,14 @@
 #
 class Recovery < ApplicationRecord
   belongs_to :user
+  has_many :awards, as: :awardable, dependent: :nullify
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 500 }
   validates :start_date, :target_date, presence: true
-  validates :target_days, presence: true
 
   before_create :calculate_target_days
+  before_update :calculate_target_days
 
   def calculate_target_days
     self.target_days = (target_date - start_date).to_i

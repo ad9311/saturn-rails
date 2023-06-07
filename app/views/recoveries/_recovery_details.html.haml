@@ -27,7 +27,8 @@
     %strong.number.text-xl.text-yellow-500= recovery.target_days
   .mt-5.mr-5.bg-neutral-200.leading-none.rounded-md
     .bg-green-500.leading-none.rounded-md.text-transparent{ style: "width: #{progress}%;", title: "#{progress}%" } *
-  - if !recovery_last_report_today?(recovery) && (Time.zone.now.hour >= 22 && Time.zone.now.hour <= 23)
-    .mt-5
-      = button_to "Submit report", "/recoveries/#{recovery.id}/report", method: :patch, class: "px-3 py-2 text-white rounded-md bg-blue-400 hover:bg-blue-500 cursor-pointer"
+  - if Time.zone.now.to_date >= recovery.start_date 
+    - if !recovery_last_report_today?(recovery) && (Time.zone.now.hour >= 13 && Time.zone.now.hour <= 23)
+      .mt-5
+        = button_to "Submit report", "/recoveries/#{recovery.id}/report", method: :patch, class: "px-3 py-2 text-white rounded-md bg-blue-400 hover:bg-blue-500 cursor-pointer"
   
