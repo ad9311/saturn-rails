@@ -37,26 +37,27 @@ module SaturnApp
 
   module Constants
     MOODS = {
-      happy: 0,
-      sad: 1,
-      excited: 2,
-      nervous: 3,
-      content: 4,
-      frustrated: 5,
-      grateful: 6,
-      anxious: 7,
-      confused: 8,
-      relaxed: 9,
-      motivated: 10,
-      inspired: 11,
-      loved: 12,
-      lonely: 13,
-      hopeful: 14,
-      stressed: 15,
-      proud: 16,
-      disappointed: 17,
-      optimistic: 18,
-      overwhelmed: 19
-    }
+      neutral: 0,
+      happy: 1,
+      sad: 2,
+      excited: 3,
+      nervous: 4,
+      content: 5,
+      frustrated: 6,
+      grateful: 7,
+      anxious: 8,
+      confused: 9,
+      relaxed: 10,
+      motivated: 11,
+      inspired: 12,
+      loved: 13,
+      lonely: 14,
+      hopeful: 15,
+      stressed: 16,
+      proud: 17,
+      disappointed: 18,
+      optimistic: 19,
+      overwhelmed: 20
+  }.freeze
   end
 end

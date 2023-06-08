@@ -39,6 +39,6 @@ class StoppersController < ApplicationController
   end
 
   def stopper_params
-    params.require(:stopper).permit(:reason, :datetime)
+    params.require(:stopper).permit(:reason, :datetime, :mood)
   end
 end

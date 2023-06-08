@@ -27,6 +27,10 @@ body {
   @apply px-3 py-2 w-full rounded-md;
 }
 
+.form-group select {
+  @apply px-3 py-2 w-full rounded-md;
+}
+
 .form-group textarea {
   @apply px-3 py-2 w-full h-32 rounded-md resize-none;
 }
