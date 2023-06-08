@@ -1,17 +1,19 @@
 - progress = recovery.target_days.zero? ? 0 : (100 * recovery.current_record) / recovery.target_days
 = link_to recovery_path(recovery), class: "block max-w-sm" do
-  %article.px-3.pt-2.pb-4.rounded-md.border.bg-slate-50.hover:bg-slate-100
+  %article.pl-5.py-3.rounded-md.border.border-2.border-neutral-300.bg-white.hover:bg-neutral-50.hover:border-neutral-500
     %h3.text-xl.font-bold= recovery.title
-    .mb-2.pr-3.max-w-sm.flex.items-center.justify-end
+    .mb-2.mr-3.max-w-sm.flex.items-center.justify-end
       %span.text-xs Days
-    .pr-5.max-w-sm.flex.items-center.justify-between
-      %p Max record:
-      %strong.number.text-xl.text-green-500= recovery.max_record
-    .pr-5.max-w-sm.flex.items-center.justify-between
-      %p Current record:
-      %strong.number.text-xl.text-blue-500= recovery.current_record
-    .pr-5.max-w-sm.flex.items-center.justify-between
-      %p Current target:
-      %strong.number.text-xl.text-yellow-500= recovery.target_days
-    .mt-5.mr-5.bg-neutral-200.leading-none.rounded-md
-      .bg-green-500.leading-none.rounded-md.text-transparent{ style: "width: #{progress}%;", title: "#{progress}%" } *
+    .pr-5
+      .max-w-sm.flex.items-center.justify-between
+        %p Max record:
+        %strong.number.text-xl.text-green-500= recovery.max_record
+      .max-w-sm.flex.items-center.justify-between
+        %p Current record:
+        %strong.number.text-xl.text-blue-500= recovery.current_record
+      .max-w-sm.flex.items-center.justify-between
+        %p Current target:
+        %strong.number.text-xl.text-yellow-500= recovery.target_days
+      .mt-4
+        %span.text-sm.text-neutral-500 Progress
+        = render "progress_bar", progress:

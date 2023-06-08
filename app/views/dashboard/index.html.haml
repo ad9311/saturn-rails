@@ -1,3 +1,5 @@
 .mt-3.mb-5
   %h2.text-2xl.font-bold Dashboard
-= render "recoveries", recoveries: @recoveries 
+%ul.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
+  %li
+    = render "recoveries", recoveries: @recoveries

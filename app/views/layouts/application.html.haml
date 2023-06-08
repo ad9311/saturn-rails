@@ -8,9 +8,9 @@
     = csp_meta_tag
     = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
     -# = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_importmap_tags
+    -# = javascript_importmap_tags
   %body
-    %header
-      = render "layouts/navbar"
+    = render "layouts/navbar"
     %main.container.mx-auto.px-3
       = yield
+    = render "layouts/footer"
