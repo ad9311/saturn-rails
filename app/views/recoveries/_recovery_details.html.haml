@@ -1,49 +1,50 @@
 - progress = recovery.target_days.zero? ? 0 : (100 * recovery.current_record) / recovery.target_days
-%article.px-3.pt-2.pb-5.mx-auto.max-w-lg.rounded-md.border.bg-slate-50
-  .flex.items-start.justify-between
-    %h3.mb-3.text-xl.font-bold= recovery.title
-    .flex.items-center
-      = link_to "Edit", edit_recovery_path(recovery), class: "mr-3 px-2 py-1 text-xs text-white rounded bg-blue-400 hover:bg-blue-500"
-      = button_to "Delete", recovery_path(recovery), method: :delete, class: "px-2 py-1 text-xs text-white rounded bg-rose-500 hover:bg-rose-600"
-  .px-3.py-2.bg-neutral-100.rounded-md
-    %p.text-neutral-500= recovery.description
-  .w-fit.mx-auto.mt-8.mb-5.grid.grid-cols-2.gap-10
-    .text-center
-      %strong Start date
-      %br
-      %span= recovery.start_date.strftime('%d %B')
-    .text-center
-      %strong Target date
-      %br
-      %span= recovery.target_date.strftime('%d %B')
+%article.pl-5.pt-3.pb-5.mx-auto.max-w-lg.rounded-md.border.border-2.border-neutral-300.bg-white
+  .pr-5
+    .flex.items-start.justify-between
+      %h3.mb-3.text-xl.font-bold= recovery.title
+      .flex.items-center
+        = link_to "Edit", edit_recovery_path(recovery), class: "mr-3 px-2 py-1 text-xs text-white rounded bg-blue-400 hover:bg-blue-500"
+        = button_to "Delete", recovery_path(recovery), method: :delete, class: "px-2 py-1 text-xs text-white rounded bg-rose-500 hover:bg-rose-600"
+    .px-3.py-2.bg-neutral-100.rounded-md.border.border-neutral-300
+      %p.text-neutral-600= recovery.description
+    .w-fit.mx-auto.mt-8.mb-5.grid.grid-cols-2.gap-10
+      .text-center
+        %strong Start date
+        %br
+        %span= recovery.start_date.strftime('%d %B')
+      .text-center
+        %strong Target date
+        %br
+        %span= recovery.target_date.strftime('%d %B')
   .mb-2.pr-3.max-w-lg.flex.items-center.justify-end
     %span.text-xs Days
-  .pr-5.max-w-lg.flex.items-center.justify-between
-    %p Target:
-    %strong.number.text-xl.text-yellow-500= recovery.target_days
-  .pr-5.max-w-lg.flex.items-center.justify-between
-    %p Max record:
-    %strong.number.text-xl.text-green-500= recovery.max_record
-  .pr-5.max-w-lg.flex.items-center.justify-between
-    %p Current record:
-    %strong.number.text-xl.text-blue-500= recovery.current_record
-  %hr.my-3
-  .pr-5.max-w-lg.flex.items-center.justify-between
-    .flex.items-center
-      %p.font-bold.mr-3 Stoppers:
-      - if @current_date >= recovery.start_date || recovery.stoppers.last&.datetime&.to_date == @current_date
-        = link_to "New", new_recovery_stopper_path(recovery), class: "mr-2 px-2 py-1 text-white rounded bg-rose-500 hover:bg-rose-600"
-        = link_to "View", recovery_stoppers_path(recovery), class: "px-2 py-1 text-white rounded bg-green-400 hover:bg-green-500"
-    %strong.number.text-xl.text-rose-500= recovery.stoppers.count
-  .mt-5
-    %span.text-sm.text-neutral-500 Progress
-  .mr-5.bg-neutral-200.leading-none.rounded-md
-    .bg-green-500.leading-none.rounded-md.text-transparent{ style: "width: #{progress}%;", title: "#{progress}%" } *
-  - if allow_submit_report?(recovery)
-    .mt-5
-      = button_to "Submit report", "/recoveries/#{recovery.id}/report", method: :patch, class: "px-3 py-2 text-white rounded-md bg-blue-400 hover:bg-blue-500 cursor-pointer"
-  - if recovery.completed
-    .mt-5.flex.items-center.justify-between
-      .w-fit.px-3.py-2.text-white.rounded-md.bg-green-500 Completed!
-      = link_to "Renew", "/recoveries/#{recovery.id}/renew", class: "px-3 py-2 text-white rounded bg-blue-400 hover:bg-blue-500"
+  .pr-5
+    .max-w-lg.flex.items-center.justify-between
+      %p Target:
+      %strong.number.text-xl.text-yellow-500= recovery.target_days
+    .max-w-lg.flex.items-center.justify-between
+      %p Max record:
+      %strong.number.text-xl.text-green-500= recovery.max_record
+    .max-w-lg.flex.items-center.justify-between
+      %p Current record:
+      %strong.number.text-xl.text-blue-500= recovery.current_record
+    %hr.my-3
+    .max-w-lg.flex.items-center.justify-between
+      .flex.items-center
+        %p.font-bold.mr-3 Stoppers:
+        - if @current_date >= recovery.start_date || recovery.stoppers.last&.datetime&.to_date == @current_date
+          = link_to "New", new_recovery_stopper_path(recovery), class: "mr-2 px-2 py-1 text-white rounded bg-rose-500 hover:bg-rose-600"
+          = link_to "View", recovery_stoppers_path(recovery), class: "px-2 py-1 text-white rounded bg-green-400 hover:bg-green-500"
+      %strong.number.text-xl.text-rose-500= recovery.stoppers.count
+    .mt-4
+      %span.text-sm.text-neutral-500 Progress
+      = render "progress_bar", progress:
+    - if allow_submit_report?(recovery)
+      .mt-5
+        = button_to "Submit report", "/recoveries/#{recovery.id}/report", method: :patch, class: "px-3 py-2 text-white rounded-md bg-blue-400 hover:bg-blue-500 cursor-pointer"
+    - if recovery.completed
+      .mt-5.flex.items-center.justify-between
+        .w-fit.px-3.py-2.text-white.rounded-md.bg-green-500 Completed!
+        = link_to "Renew", "/recoveries/#{recovery.id}/renew", class: "px-3 py-2 text-white rounded bg-blue-400 hover:bg-blue-500"
   
