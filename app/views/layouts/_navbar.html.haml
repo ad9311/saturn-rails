@@ -3,4 +3,5 @@
     .flex.items-center.justify-between
       = link_to root_path do
         %h1.text-3xl.font-bold.text-white SaturnApp
-      = button_to "Log out",  destroy_user_session_path, method: :delete, class: "px-2 py-1 text-white rounded bg-rose-500 hover:bg-rose-600"
+      - if user_signed_in?
+        = button_to "Log out",  destroy_user_session_path, method: :delete, class: "px-2 py-1 text-white rounded bg-rose-500 hover:bg-rose-600"
