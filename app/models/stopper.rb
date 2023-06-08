@@ -19,4 +19,7 @@
 #
 class Stopper < ApplicationRecord
   belongs_to :recovery
+
+  validates :reason, presence: true, length: { maximum: 500 }
+  validates :date, presence: true
 end
