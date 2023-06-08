@@ -1,0 +1,14 @@
+- unless @recovery.errors.messages.empty?
+  %p.text-xl.font-bold Errors:
+  %ul.mb-5
+    - @recovery.errors.messages.each_pair do |k, v|
+      %li.text-rose-600= "#{k.to_s.humanize} #{v.join(',')}"
+= form_for @recovery do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title
+  .form-group
+    = f.label :description
+    = f.text_area :description
+  .form-actions
+    = f.submit "Submit"
