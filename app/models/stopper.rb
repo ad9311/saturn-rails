@@ -3,7 +3,7 @@
 # Table name: stoppers
 #
 #  id          :bigint           not null, primary key
-#  date        :date             not null
+#  datetime    :datetime         not null
 #  reason      :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -21,5 +21,5 @@ class Stopper < ApplicationRecord
   belongs_to :recovery
 
   validates :reason, presence: true, length: { maximum: 500 }
-  validates :date, presence: true
+  validates :datetime, presence: true
 end

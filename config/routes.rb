@@ -15,6 +15,6 @@ Rails.application.routes.draw do
 
   #Stoppers
   resources :recoveries do
-    resources :stoppers, only: %i[index show new create]
+    resources :stoppers, only: %i[index new create]
   end
 end
