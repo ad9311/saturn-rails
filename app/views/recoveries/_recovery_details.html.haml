@@ -29,8 +29,9 @@
   .pr-5.max-w-lg.flex.items-center.justify-between
     .flex.items-center
       %p.font-bold.mr-3 Stoppers:
-      = link_to "New", new_recovery_stopper_path(recovery), class: "mr-2 px-2 py-1 text-white rounded bg-rose-500 hover:bg-rose-600"
-      = link_to "View", recovery_stoppers_path(recovery), class: "px-2 py-1 text-white rounded bg-green-400 hover:bg-green-500"
+      - if @current_date >= recovery.start_date
+        = link_to "New", new_recovery_stopper_path(recovery), class: "mr-2 px-2 py-1 text-white rounded bg-rose-500 hover:bg-rose-600"
+        = link_to "View", recovery_stoppers_path(recovery), class: "px-2 py-1 text-white rounded bg-green-400 hover:bg-green-500"
     %strong.number.text-xl.text-rose-500= recovery.stoppers.count
   .mt-5
     %span.text-sm.text-neutral-500 Progress

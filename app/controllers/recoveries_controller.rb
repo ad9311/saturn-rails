@@ -2,6 +2,7 @@ class RecoveriesController < ApplicationController
   before_action :set_recovery, only: %i[show destroy submit_report renew submit_renew]
   before_action :recovery_params, only: %i[create]
   before_action :recovery_renew_params, only: %i[submit_renew]
+  before_action :set_current_date, only: %i[show submit_report]
 
   def index
     @recoveries = current_user.recoveries
@@ -23,12 +24,11 @@ class RecoveriesController < ApplicationController
   end
 
   def submit_report
-    current_date = Time.zone.now.to_date
-    redirect_to recovery_path(@recovery) and return unless current_date >= @recovery.start_date
+    redirect_to recovery_path(@recovery) and return unless @current_date >= @recovery.start_date
 
     last_report = @recovery.report_dates.last&.to_date
 
-    update_report if last_report.nil? || current_date > last_report
+    update_report if last_report.nil? || @current_date > last_report
 
     redirect_to recovery_path(@recovery)
   end
@@ -78,5 +78,9 @@ class RecoveriesController < ApplicationController
 
   def recovery_renew_params
     params.require(:recovery).permit(:start_date, :target_date)
+  end
+
+  def set_current_date
+    @current_date = Time.zone.now.to_date
   end
 end
