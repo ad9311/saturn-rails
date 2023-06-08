@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   patch 'recoveries/:id/report', to: 'recoveries#submit_report'
   get 'recoveries/:id/renew', to: 'recoveries#renew'
   patch 'recoveries/:id/renew', to: 'recoveries#submit_renew'
+
+  #Stoppers
+  resources :recoveries do
+    resources :stoppers, only: %i[index show new create]
+  end
 end

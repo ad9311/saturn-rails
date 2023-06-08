@@ -28,6 +28,7 @@
 class Recovery < ApplicationRecord
   belongs_to :user
   has_many :awards, as: :awardable, dependent: :nullify
+  has_many :stoppers, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 500 }
