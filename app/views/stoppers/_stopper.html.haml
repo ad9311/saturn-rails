@@ -1,0 +1,8 @@
+%article.max-w-sm.px-3.py-4.rounded-md.border.bg-slate-50
+  .px-3.py-2.bg-neutral-100.rounded-md
+    %p.text-neutral-500.font-bold What happened?
+    %hr.my-2
+    %p.text-neutral-500= stopper.reason
+    .mt-2.mb-5
+    -# %p.text-neutral-500.font-bold When it happened?
+    %strong.text-rose-500= stopper.datetime.strftime('%a, %d %B %I:%M %p')

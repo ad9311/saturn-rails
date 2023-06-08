@@ -36,7 +36,7 @@ class RecoveriesController < ApplicationController
   def renew; end
 
   def submit_renew
-    @recovery.update(**recovery_renew_params, current_record: 0, completed: false);
+    @recovery.update(**recovery_renew_params, current_record: 0, completed: false)
     redirect_to recovery_path(@recovery)
   end
 
