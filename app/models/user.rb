@@ -28,6 +28,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true, length: { minimum: 1 }
   validates :username, presence: true, length: { minimum: 6, maximum: 25 }
 
+  has_many :thoughts, dependent: :destroy
   has_many :recoveries, dependent: :destroy
   has_many :awards, dependent: :destroy
 end

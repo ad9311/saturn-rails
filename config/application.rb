@@ -34,4 +34,29 @@ module SaturnApp
     # Don't generate system test files.
     config.generators.system_tests = nil
   end
+
+  module Constants
+    MOODS = {
+      happy: 0,
+      sad: 1,
+      excited: 2,
+      nervous: 3,
+      content: 4,
+      frustrated: 5,
+      grateful: 6,
+      anxious: 7,
+      confused: 8,
+      relaxed: 9,
+      motivated: 10,
+      inspired: 11,
+      loved: 12,
+      lonely: 13,
+      hopeful: 14,
+      stressed: 15,
+      proud: 16,
+      disappointed: 17,
+      optimistic: 18,
+      overwhelmed: 19
+    }
+  end
 end

@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    @recoveries = current_user.recoveries
+    @thoughts_count = current_user.thoughts.count
+    @recoveries_count = current_user.recoveries.count
   end
 end
