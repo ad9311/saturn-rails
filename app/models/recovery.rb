@@ -38,16 +38,16 @@ class Recovery < ApplicationRecord
   before_create :calculate_target_days
   before_update :calculate_target_days
 
+  private
+
   def calculate_target_days
     self.target_days = (target_date - start_date).to_i + 1
   end
 
-  private
-
   def validate_dates
-    return if self.target_date.nil? || self.start_date.nil?
+    return if target_date.nil? || start_date.nil?
 
-    errors.add(:start_date, 'must be greater than the target date') if self.target_date < self.start_date
-    errors.add(:start_date, 'must be from today onwards') if self.start_date < Time.zone.now.to_date
+    errors.add(:start_date, 'must be greater than the target date') if target_date < start_date
+    errors.add(:start_date, 'must be from today onwards') if start_date < Time.zone.now.to_date
   end
 end
