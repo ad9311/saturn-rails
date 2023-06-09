@@ -37,3 +37,11 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 /public/assets
+
+# Ignore configuration files
+README.md
+.solargraph.yml
+.rubocop.yml
+
+# Ignore rspec directory
+/spec
