@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :dashboard, only: %i[index]
 
   # Thoughts
-  resources :thoughts, only: %i[index new create destroy]
+  resources :thoughts, only: %i[index new edit create destroy update]
 
   # Recoveries
   resources :recoveries

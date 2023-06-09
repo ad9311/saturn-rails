@@ -4,7 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  datetime    :datetime         not null
-#  mood        :integer          default("neutral"), not null
+#  mood        :integer          not null
 #  reason      :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
