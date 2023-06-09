@@ -1,6 +1,6 @@
 - progress = recovery.target_days.zero? ? 0 : (100 * recovery.current_record) / recovery.target_days
 = link_to recovery_path(recovery), class: "block max-w-sm" do
-  %article.pl-5.py-3.rounded-md.border.border-2.border-neutral-300.bg-white.hover:bg-neutral-50.hover:border-neutral-500
+  %article.pl-5.py-5.rounded-md.border.border-2.border-neutral-300.bg-white.hover:bg-neutral-50.hover:border-neutral-500
     %h3.text-xl.font-bold= recovery.title
     .mb-2.mr-3.max-w-sm.flex.items-center.justify-end
       %span.text-xs Days

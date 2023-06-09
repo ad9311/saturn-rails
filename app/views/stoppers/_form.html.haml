@@ -14,4 +14,4 @@
     = f.label :mood
     = f.select :mood, options_for_select(Stopper.moods.keys.map { |mood| [mood.titleize, mood] })
   .form-actions
-    = f.submit "Submit"
+    = f.submit "Add stopper"

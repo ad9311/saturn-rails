@@ -2,4 +2,6 @@
   %h2.text-2xl.font-bold Dashboard
 %ul.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
   %li
+    = render "thoughts_count", thoughts_count: @thoughts_count
+  %li
     = render "recoveries_count", recoveries_count: @recoveries_count

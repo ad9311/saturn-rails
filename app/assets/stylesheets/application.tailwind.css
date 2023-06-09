@@ -6,9 +6,9 @@
 @tailwind utilities;
 
 
-html {
+/* html {
   @apply h-full bg-gradient-to-t from-neutral-200 via-neutral-100 to-neutral-50;
-}
+} */
 
 body {
   @apply text-zinc-700;
@@ -36,7 +36,7 @@ body {
 }
 
 .form-actions {
-  @apply mt-5;
+  @apply mt-5 flex justify-end;
 }
 
 .form-actions input {
