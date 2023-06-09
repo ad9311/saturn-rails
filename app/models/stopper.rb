@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  datetime    :datetime         not null
+#  mood        :integer          default("neutral"), not null
 #  reason      :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -20,6 +21,9 @@
 class Stopper < ApplicationRecord
   belongs_to :recovery
 
-  validates :reason, presence: true, length: { maximum: 500 }
+  validates :reason, presence: true, length: { maximum: 1000 }
   validates :datetime, presence: true
+  validates :mood, presence: true
+
+  enum mood: SaturnApp::Constants::MOODS
 end
