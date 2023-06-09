@@ -23,7 +23,7 @@ class ThoughtsController < ApplicationController
     @thought.destroy
     redirect_to thoughts_path
   end
-  
+
   private
 
   def thought_params

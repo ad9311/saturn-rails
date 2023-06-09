@@ -80,9 +80,16 @@ group :development do
   # Use hirb for rails console
   gem 'hirb'
 
+  # Use rspec-rails for testing
+  gem 'rspec-rails'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+end
+
+group :test do
+  gem 'rails-controller-testing'
 end

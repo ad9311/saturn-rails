@@ -9,6 +9,7 @@ AllCops:
     - "Guardfile"
     - "Rakefile"
     - "node_modules/**/*"
+    - "spec/**/*"
 
   DisplayCopNames: true
   TargetRubyVersion: '3.2.2'
