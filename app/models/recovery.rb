@@ -33,11 +33,21 @@ class Recovery < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 500 }
   validates :start_date, :target_date, presence: true
+  validate :validate_dates
 
   before_create :calculate_target_days
   before_update :calculate_target_days
 
   def calculate_target_days
     self.target_days = (target_date - start_date).to_i + 1
+  end
+
+  private
+
+  def validate_dates
+    return if self.target_date.nil? || self.start_date.nil?
+
+    errors.add(:start_date, 'must be greater than the target date') if self.target_date < self.start_date
+    errors.add(:start_date, 'must be from today onwards') if self.start_date < Time.zone.now.to_date
   end
 end
