@@ -48,6 +48,6 @@ class Recovery < ApplicationRecord
     return if target_date.nil? || start_date.nil?
 
     errors.add(:start_date, 'must be greater than the target date') if target_date < start_date
-    errors.add(:start_date, 'must be from today onwards') if start_date < Time.zone.now.to_date
+    # errors.add(:start_date, 'must be from today onwards') if start_date < Time.zone.now.to_date
   end
 end
