@@ -1,5 +1,5 @@
 class RecoveriesController < ApplicationController
-  before_action :set_recovery, only: %i[show destroy edit update submit_report renew submit_renew]
+  before_action :set_recovery, only: %i[show destroy edit update submit_report renew submit_renew bookmark unbookmark]
   before_action :recovery_params, only: %i[create]
   before_action :recovery_renew_params, only: %i[submit_renew]
   before_action :set_current_date, only: %i[show submit_report]
@@ -57,6 +57,18 @@ class RecoveriesController < ApplicationController
     else
       redirect_to recovery_path(@recovery)
     end
+  end
+
+  def bookmark
+    @recovery.update(bookmarked: true)
+
+    redirect_to recovery_path(@recovery)
+  end
+
+  def unbookmark
+    @recovery.update(bookmarked: false)
+
+    redirect_to recovery_path(@recovery)
   end
 
   private

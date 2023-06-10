@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   patch 'recoveries/:id/report', to: 'recoveries#submit_report'
   get 'recoveries/:id/renew', to: 'recoveries#renew'
   patch 'recoveries/:id/renew', to: 'recoveries#submit_renew'
+  patch 'recoveries/:id/bookmark', to: 'recoveries#bookmark'
+  patch 'recoveries/:id/unbookmark', to: 'recoveries#unbookmark'
 
   # Stoppers
   resources :recoveries do
