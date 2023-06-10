@@ -71,7 +71,7 @@ class RecoveriesController < ApplicationController
       current_record: current_record_plus,
       completed:
     )
-    puts "#{@recovery.errors.messages}"
+
     return unless completed
 
     Award.create(
