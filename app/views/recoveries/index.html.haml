@@ -2,7 +2,7 @@
   .flex.items-center
     %h2.text-2xl.font-bold Recoveries
     = link_to new_recovery_path, class: "block ml-3" do
-      %button.px-2.py-1.text-white.rounded.bg-green-500.hover:bg-green-600{ type: "button" } Add
+      = image_tag "plus.svg", alt: "back", class: "w-8"
 %ul.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
   - @recoveries.each do |recovery|
     %li= render "recovery", recovery:
