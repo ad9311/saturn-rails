@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :dashboard, only: %i[index]
 
   # Thoughts
+  get 'thoughts/favorites', to: 'thoughts#favorites'
+  patch 'thoughts/:id/bookmark', to: 'thoughts#bookmark'
+  patch 'thoughts/:id/unbookmark', to: 'thoughts#unbookmark'
   resources :thoughts, only: %i[index new edit create destroy update]
 
   # Recoveries

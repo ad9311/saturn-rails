@@ -1,0 +1,8 @@
+.mt-3.mb-5
+  .flex.items-center
+    %h2.text-2xl.font-bold Thoughts
+    = link_to new_thought_path, class: "block ml-3" do
+      = image_tag "plus.svg", alt: "back", class: "w-8"
+%ul.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
+  - @thoughts.each do |thought|
+    %li= render "thought", thought:

@@ -1,9 +1,10 @@
 class ThoughtsController < ApplicationController
   before_action :thought_params, only: %i[create update]
-  before_action :set_thought, only: %i[destroy edit update]
+  before_action :set_thought, only: %i[destroy edit update bookmark unbookmark]
 
   def index
     @thoughts = current_user.thoughts
+    @bookmarked_thoughts_count = current_user.thoughts.where(bookmarked: true).order(created_at: :desc).count
   end
 
   def new
@@ -32,6 +33,22 @@ class ThoughtsController < ApplicationController
   def destroy
     @thought.destroy
     redirect_to thoughts_path
+  end
+
+  def bookmark
+    @thought.update(bookmarked: true)
+
+    redirect_to thoughts_path
+  end
+
+  def unbookmark
+    @thought.update(bookmarked: false)
+
+    redirect_to thoughts_path
+  end
+
+  def favorites
+    @thoughts = current_user.thoughts.where(bookmarked: true).order(created_at: :desc)
   end
 
   private
