@@ -3,10 +3,10 @@
 # Table name: recoveries
 #
 #  id             :bigint           not null, primary key
+#  bookmarked     :boolean          default(FALSE), not null
 #  completed      :boolean          default(FALSE), not null
 #  current_record :integer          default(0), not null
 #  description    :text
-#  favorite       :boolean          default(FALSE), not null
 #  max_record     :integer          default(0), not null
 #  report_dates   :jsonb            not null
 #  start_date     :date             not null
@@ -33,10 +33,14 @@ class Recovery < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 500 }
   validates :start_date, :target_date, presence: true
-  validate :validate_dates
+  validate :validate_dates, on: :create
 
   before_create :calculate_target_days
   before_update :calculate_target_days
+
+  def bookmarked?
+    bookmarked
+  end
 
   private
 
@@ -48,6 +52,6 @@ class Recovery < ApplicationRecord
     return if target_date.nil? || start_date.nil?
 
     errors.add(:start_date, 'must be greater than the target date') if target_date < start_date
-    # errors.add(:start_date, 'must be from today onwards') if start_date < Time.zone.now.to_date
+    errors.add(:start_date, 'must be from today onwards') if start_date < Time.zone.now.to_date
   end
 end

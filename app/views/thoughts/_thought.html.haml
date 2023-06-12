@@ -1,0 +1,22 @@
+%article.p-5.py-5.mx-auto.max-w-lg.rounded-md.border.border-2.border-neutral-300.bg-white
+  .mb-5.flex.justify-between
+    .flex.items-center
+      = link_to edit_thought_path(thought) do
+        = image_tag "pencil.svg", alt: "back", class: "w-6 mr-3"
+      - if thought.bookmarked?
+        = button_to "/thoughts/#{thought.id}/unbookmark", method: :patch do
+          = image_tag "filled_heart.svg", alt: "unbookmark", class: "w-6"
+      - else
+        = button_to "/thoughts/#{thought.id}/bookmark", method: :patch do
+          = image_tag "unfilled_heart.svg", alt: "unbookmark", class: "w-6"
+    = button_to thought_path(thought), method: :delete do
+      = image_tag "trash_bin.svg", alt: "delete", class: "w-6"
+  .px-3.py-2.bg-neutral-100.rounded-md.border.border-neutral-300
+    %p.text-neutral-600.font-semibold= thought.message
+    %hr.my-3
+    .flex.justify-end
+      .leading-none
+        .text-sm
+          %span This made feel
+          %strong= thought.mood
+        %span.text-sm.text-neutral-500= thought.created_at.strftime('%A, %d %B')

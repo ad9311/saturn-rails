@@ -1,7 +1,7 @@
 .mt-3.mb-5
   .flex.items-center
     = link_to recovery_path(@recovery), class: "block mr-3" do
-      %button.px-2.py-1.text-white.rounded.bg-green-500.hover:bg-green-600{ type: "button" } Back
+      = image_tag "arrow.svg", alt: "back", class: "w-8"
     %h2.text-2xl.font-bold= "#{@recovery.title} - stoppers"
 %ul.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
   - @stoppers.each do |stopper|

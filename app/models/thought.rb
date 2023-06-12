@@ -3,6 +3,7 @@
 # Table name: thoughts
 #
 #  id         :bigint           not null, primary key
+#  bookmarked :boolean          default(FALSE), not null
 #  message    :text             not null
 #  mood       :integer          not null
 #  created_at :datetime         not null
@@ -24,4 +25,8 @@ class Thought < ApplicationRecord
   validates :mood, presence: true
 
   enum mood: SaturnApp::Constants::MOODS
+
+  def bookmarked?
+    bookmarked
+  end
 end
