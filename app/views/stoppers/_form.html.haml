@@ -12,6 +12,6 @@
     = f.datetime_local_field :datetime
   .form-group
     = f.label :mood
-    = f.select :mood, options_for_select(Stopper.moods.keys.map { |mood| [mood.titleize, mood] })
+    = f.select :mood, options_for_select(map_sort_moods, selected: @stopper.mood)
   .form-actions
     = f.submit "Add stopper"
