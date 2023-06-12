@@ -73,7 +73,7 @@ class RecoveriesController < ApplicationController
   end
 
   def favorites
-    @recoveries = current_user.recoveries.where(bookmarked: true)
+    @recoveries = current_user.recoveries.where(bookmarked: true).order(created_at: :desc)
   end
 
   private
