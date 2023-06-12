@@ -141,7 +141,9 @@ module SaturnApp
       victorious: 101,
       vulnerable: 102,
       worried: 103,
-      yearning: 104
+      yearning: 104,
+      weak: 105,
+      powerful: 106
     }.freeze
   end
 end

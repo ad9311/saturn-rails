@@ -9,6 +9,6 @@
     = f.text_area :message
   .form-group
     = f.label :mood
-    = f.select :mood, options_for_select(Thought.moods.keys.map { |mood| [mood.titleize, mood] }, selected: @thought.mood)
+    = f.select :mood, options_for_select(map_sort_moods, selected: @thought.mood)
   .form-actions
     = f.submit "Add thought"
