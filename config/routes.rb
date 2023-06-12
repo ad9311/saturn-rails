@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :thoughts, only: %i[index new edit create destroy update]
 
   # Recoveries
+  get 'recoveries/favorites', to: 'recoveries#favorites'
   resources :recoveries
   patch 'recoveries/:id/report', to: 'recoveries#submit_report'
   get 'recoveries/:id/renew', to: 'recoveries#renew'

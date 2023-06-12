@@ -3,6 +3,13 @@
     %h2.text-2xl.font-bold Recoveries
     = link_to new_recovery_path, class: "block ml-3" do
       = image_tag "plus.svg", alt: "back", class: "w-8"
+= link_to recoveries_favorites_path do
+  %ul.my-10.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
+    %li
+      %article.px-3.py-2.rounded-md.border.border-2.border-neutral-300.bg-white.hover:bg-neutral-50.hover:border-neutral-500
+        .flex.justify-between.items-center.px-3
+          %h3.text-xl.font-bold Favorite recoveries
+          %p.text-3xl.text-blue-500.font-bold.number= @bookmarked_recoveries_count
 %ul.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
   - @recoveries.each do |recovery|
     %li= render "recovery", recovery:
