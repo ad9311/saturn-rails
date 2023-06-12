@@ -3,7 +3,7 @@ class StoppersController < ApplicationController
   before_action :stopper_params, only: %i[create]
 
   def index
-    @stoppers = @recovery.stoppers
+    @stoppers = @recovery.stoppers.order(created_at: :desc)
   end
 
   def show; end
