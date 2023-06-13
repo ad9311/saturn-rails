@@ -1,0 +1,11 @@
+-#  Link showing page number
+-#  available local variables
+-#    page:          a page object for "this" page
+-#    url:           url to this page
+-#    current_page:  a page object for the currently displayed page
+-#    total_pages:   total number of pages
+-#    per_page:      number of items to fetch per page
+-#    remote:        data-remote
+- class_name = "mx-1 text-xl"
+%span{class: "page #{class_name} #{page.current? ? "font-bold underline" : "pl-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md"}"}
+  = link_to_unless page.current?, page, url, {remote: remote, rel: page.rel}

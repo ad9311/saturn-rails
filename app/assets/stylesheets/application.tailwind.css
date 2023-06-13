@@ -46,3 +46,7 @@ body {
 .number {
   font-family: 'Kdam Thmor Pro', sans-serif;
 }
+
+.pagination {
+  transform: translate(-50%, 0);
+}

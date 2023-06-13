@@ -15,3 +15,5 @@
 %ul.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
   - @thoughts.each do |thought|
     %li= render "thought", thought:
+
+= paginate @thoughts
