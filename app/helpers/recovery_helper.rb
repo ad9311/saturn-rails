@@ -18,6 +18,6 @@ module RecoveryHelper
   end
 
   def calculate_progress(recovery)
-    recovery.target_days.zero? ? 0 : (100 * recovery.current_record) / recovery.target_days
+    recovery.target_days.zero? ? 0.0 : (100.0 * recovery.current_record.to_f) / recovery.target_days.to_f
   end
 end
