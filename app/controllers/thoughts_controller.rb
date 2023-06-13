@@ -3,7 +3,7 @@ class ThoughtsController < ApplicationController
   before_action :set_thought, only: %i[destroy edit update bookmark unbookmark]
 
   def index
-    @thoughts = current_user.thoughts.order(created_at: :desc)
+    @thoughts = current_user.thoughts.order(created_at: :desc).page params[:page]
     @bookmarked_thoughts_count = current_user.thoughts.where(bookmarked: true).count
   end
 
@@ -48,7 +48,7 @@ class ThoughtsController < ApplicationController
   end
 
   def favorites
-    @thoughts = current_user.thoughts.where(bookmarked: true).order(created_at: :desc)
+    @thoughts = current_user.thoughts.where(bookmarked: true).order(created_at: :desc).page params[:page]
   end
 
   private

@@ -57,7 +57,11 @@ gem 'haml-rails'
 # Use devise for user authentication
 gem 'devise'
 
+# Use dockerfile-rails for fly.io
 gem 'dockerfile-rails', '>= 1.4', group: :development
+
+# Use kaminari for pagination
+gem 'kaminari'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
