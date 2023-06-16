@@ -6,7 +6,7 @@
 -#    remote:        data-remote
 -#    paginator:     the paginator that renders the pagination tags inside
 = paginator.render do
-  %nav.pagination{ class: "fixed w-max bottom-14 left-2/4" }
+  %nav.pagination{ class: "fixed z-10 w-max bottom-14 left-2/4 py-2 px-3 bg-white rounded-md border border-2 border-neutral-300" }
     -# = first_page_tag unless current_page.first?
     = prev_page_tag unless current_page.first?
     - each_page do |page|
