@@ -1,0 +1,23 @@
+- unless @routine.errors.messages.empty?
+  %p.text-xl.font-bold Errors:
+  %ul.mb-5
+    - @routine.errors.messages.each_pair do |k, v|
+      %li.text-rose-600= "#{k.to_s.humanize} #{v.join(',')}"
+= form_for @routine do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title
+  .form-group
+    = f.label :description
+    = f.text_area :description
+  .mb-3
+    %span.italic.text-neutral-400 Routine's days
+    - SaturnApp::Constants::DAYS_OF_WEEK.each do |day|
+      %div
+        = check_box_tag "routine[days][]", day, false, id: "days_#{day}"
+        = label_tag "days_#{day}", day.titleize
+  .form-group
+    = f.label :target_days
+    = f.number_field :target_days, value: 0, min: 0
+  .form-actions
+    = f.submit "Submit"

@@ -26,4 +26,8 @@ Rails.application.routes.draw do
   resources :recoveries do
     resources :stoppers, only: %i[index new create]
   end
+
+  # Routines
+  get 'routines/favorites', to: 'routines#favorites'
+  resources :routines
 end
