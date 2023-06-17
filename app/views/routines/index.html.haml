@@ -1,0 +1,17 @@
+.mt-3.mb-5
+  .flex.items-center
+    %h2.text-2xl.font-bold Routines
+    = link_to new_routine_path, class: "block ml-3" do
+      = image_tag "plus.svg", alt: "back", class: "w-8"
+= link_to routines_favorites_path do
+  %ul.my-10.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
+    %li
+      %article.px-3.py-2.rounded-md.border.border-2.border-neutral-300.bg-white.hover:bg-neutral-50.hover:border-neutral-500
+        .flex.justify-between.items-center.px-3
+          .flex.items-center
+            = image_tag "filled_heart.svg", alt: "favorites", class: "w-6 mr-3"
+            %h3.text-xl.font-bold Favorite routines
+          %p.text-3xl.text-blue-500.font-bold.number= @bookmarked_routines_count
+%ul.grid.grid-cols-1.gap-y-5.md:grid-cols-2.md:gap-5.xl:grid-cols-3
+  - @routines.each do |routine|
+    %li= render "routine", routine:
