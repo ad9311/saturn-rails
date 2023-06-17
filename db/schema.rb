@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_17_024654) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_17_034339) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_024654) do
   create_table "routines", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
-    t.jsonb "days", null: false
+    t.jsonb "days", default: [], null: false
     t.integer "target_days", null: false
     t.integer "current_record", default: 0, null: false
     t.integer "max_record", default: 0, null: false
@@ -63,13 +63,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_024654) do
     t.bigint "recovery_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "mood", null: false
+    t.integer "mood", default: 60, null: false
     t.index ["recovery_id"], name: "index_stoppers_on_recovery_id"
   end
 
   create_table "thoughts", force: :cascade do |t|
     t.text "message", null: false
-    t.integer "mood", null: false
+    t.integer "mood", default: 60, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

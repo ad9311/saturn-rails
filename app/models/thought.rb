@@ -5,7 +5,7 @@
 #  id         :bigint           not null, primary key
 #  bookmarked :boolean          default(FALSE), not null
 #  message    :text             not null
-#  mood       :integer          not null
+#  mood       :integer          default("neutral"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint           not null
