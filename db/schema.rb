@@ -78,15 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_040936) do
     t.index ["user_id"], name: "index_thoughts_on_user_id"
   end
 
-  create_table "thoughts_from_stoppers", force: :cascade do |t|
-    t.bigint "thought_id", null: false
-    t.bigint "stopper_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["stopper_id"], name: "index_thoughts_from_stoppers_on_stopper_id"
-    t.index ["thought_id"], name: "index_thoughts_from_stoppers_on_thought_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -110,6 +101,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_040936) do
   add_foreign_key "routines", "users"
   add_foreign_key "stoppers", "recoveries"
   add_foreign_key "thoughts", "users"
-  add_foreign_key "thoughts_from_stoppers", "stoppers"
-  add_foreign_key "thoughts_from_stoppers", "thoughts"
 end

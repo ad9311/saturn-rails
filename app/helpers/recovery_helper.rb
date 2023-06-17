@@ -1,5 +1,5 @@
 module RecoveryHelper
-  def allow_submit_report?(recovery)
+  def allow_submit_recovery_report?(recovery)
     current_date = Time.zone.now.to_date
     current_time = Time.zone.now
     last_report = recovery.report_dates.last&.to_date

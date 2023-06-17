@@ -1,5 +1,5 @@
 module RoutineHelper
-  def allow_submit_report?(routine)
+  def allow_submit_routine_report?(routine)
     today = Time.zone.today.strftime('%A').downcase
     current_date = Time.zone.now.to_date
     last_report = routine.last_report
