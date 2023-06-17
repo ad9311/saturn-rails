@@ -18,7 +18,7 @@ class RoutinesController < ApplicationController
   def create
     @routine = current_user.routines.build(routine_params)
     if @routine.save
-      redirect_to new_routine_path
+      redirect_to routine_path(@routine)
     else
       render :new
     end

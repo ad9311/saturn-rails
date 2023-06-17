@@ -33,6 +33,10 @@ class Routine < ApplicationRecord
   validates :target_days, presence: true, numericality: { greater_than: 0 }
   validate :validate_target_days, on: :create
 
+  def bookmarked?
+    bookmarked
+  end
+
   private
 
   def validate_days
