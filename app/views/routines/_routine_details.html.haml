@@ -5,17 +5,18 @@
         = link_to edit_routine_path(routine) do
           = image_tag "pencil.svg", alt: "edit", class: "w-6 mr-3"
         - if routine.bookmarked?
-          = button_to "/recoveries/#{routine.id}/unbookmark", method: :patch do
+          = button_to "/routines/#{routine.id}/unbookmark", method: :patch do
             = image_tag "filled_heart.svg", alt: "unbookmark", class: "w-6"
         - else
-          = button_to "/recoveries/#{routine.id}/bookmark", method: :patch do
+          = button_to "/routines/#{routine.id}/bookmark", method: :patch do
             = image_tag "unfilled_heart.svg", alt: "bookmark", class: "w-6"
       = button_to routine_path(routine), method: :delete do
         = image_tag "trash_bin.svg", alt: "delete", class: "w-6"
     .mt-5
       %h3.mb-3.text-xl.font-bold= routine.title
-    .px-3.py-2.bg-neutral-100.rounded-md.border.border-neutral-300
-      %p.break-all.text-neutral-600= routine.description
+    - unless routine.description.empty?
+      .px-3.py-2.bg-neutral-100.rounded-md.border.border-neutral-300
+        %p.break-all.text-neutral-600= routine.description
   .mt-5.mb-2.pr-3.max-w-lg.flex.items-center.justify-end
     %span.text-xs Days
   .pr-5

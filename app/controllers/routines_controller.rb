@@ -1,6 +1,6 @@
 class RoutinesController < ApplicationController
-  before_action :set_routine, only: %i[show edit update destroy]
-  before_action :routine_params, only: %i[create]
+  before_action :set_routine, only: %i[show edit update destroy bookmark unbookmark]
+  before_action :routine_params, only: %i[create update]
 
   def index
     @routines = current_user.routines.order(created_at: :desc)
@@ -24,7 +24,13 @@ class RoutinesController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    if @routine.update(routine_params)
+      redirect_to routine_path(@routine)
+    else
+      render :edit
+    end
+  end
 
   def destroy
     @routine.destroy
@@ -34,6 +40,16 @@ class RoutinesController < ApplicationController
 
   def favorites
     @routines = current_user.routines.where(bookmarked: true).order(created_at: :desc)
+  end
+
+  def bookmark
+    @routine.update(bookmarked: true)
+    redirect_to routine_path(@routine)
+  end
+
+  def unbookmark
+    @routine.update(bookmarked: false)
+    redirect_to routine_path(@routine)
   end
 
   private
