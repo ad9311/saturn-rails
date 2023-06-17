@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   # Routines
   get 'routines/favorites', to: 'routines#favorites'
   resources :routines
+  patch 'routines/:id/report', to: 'routines#submit_report'
   patch 'routines/:id/bookmark', to: 'routines#bookmark'
   patch 'routines/:id/unbookmark', to: 'routines#unbookmark'
 end

@@ -13,7 +13,7 @@
   .mb-3
     %span.italic.text-neutral-400 Routine's days
     - SaturnApp::Constants::DAYS_OF_WEEK.each do |day|
-      %div
+      .mb-2
         = check_box_tag "routine[days][]", day, false, id: "days_#{day}"
         = label_tag "days_#{day}", day.titleize
   .form-group

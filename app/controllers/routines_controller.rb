@@ -1,5 +1,5 @@
 class RoutinesController < ApplicationController
-  before_action :set_routine, only: %i[show edit update destroy bookmark unbookmark]
+  before_action :set_routine, only: %i[show edit update destroy submit_report bookmark unbookmark]
   before_action :routine_params, only: %i[create update]
 
   def index
@@ -49,6 +49,26 @@ class RoutinesController < ApplicationController
 
   def unbookmark
     @routine.update(bookmarked: false)
+    redirect_to routine_path(@routine)
+  end
+
+  def submit_report
+    today = Time.zone.today.strftime('%A').downcase
+    current_date = Time.zone.now.to_date
+    last_report = @routine.last_report
+
+    redirect_to routine_path(@routine) and return unless @routine.days.include?(today)
+
+    redirect_to routine_path(@routine) and return if !last_report.nil? && last_report.to_date >= current_date
+
+    max_record = @routine.max_record
+    current_record_plus = @routine.current_record + 1
+    @routine.update(
+      max_record: [current_record_plus, max_record].max,
+      current_record: current_record_plus,
+      last_report: Time.zone.now
+    )
+
     redirect_to routine_path(@routine)
   end
 

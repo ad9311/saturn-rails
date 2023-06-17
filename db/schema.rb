@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_150801) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_17_024654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_150801) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_report"
     t.index ["user_id"], name: "index_routines_on_user_id"
   end
 
@@ -74,6 +75,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_150801) do
     t.datetime "updated_at", null: false
     t.boolean "bookmarked", default: false, null: false
     t.index ["user_id"], name: "index_thoughts_on_user_id"
+  end
+
+  create_table "thoughts_from_stoppers", force: :cascade do |t|
+    t.bigint "thought_id", null: false
+    t.bigint "stopper_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stopper_id"], name: "index_thoughts_from_stoppers_on_stopper_id"
+    t.index ["thought_id"], name: "index_thoughts_from_stoppers_on_thought_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,4 +109,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_150801) do
   add_foreign_key "routines", "users"
   add_foreign_key "stoppers", "recoveries"
   add_foreign_key "thoughts", "users"
+  add_foreign_key "thoughts_from_stoppers", "stoppers"
+  add_foreign_key "thoughts_from_stoppers", "thoughts"
 end
