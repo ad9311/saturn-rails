@@ -9,14 +9,14 @@
       %span.text-xs Days
     .pr-5
       .max-w-sm.flex.items-center.justify-between
+        %p Target:
+        %strong.number.text-xl.text-yellow-500= recovery.target_days
+      .max-w-sm.flex.items-center.justify-between
         %p Max record:
         %strong.number.text-xl.text-green-500= recovery.max_record
       .max-w-sm.flex.items-center.justify-between
         %p Current record:
         %strong.number.text-xl.text-blue-500= recovery.current_record
-      .max-w-sm.flex.items-center.justify-between
-        %p Current target:
-        %strong.number.text-xl.text-yellow-500= recovery.target_days
       %hr.my-3
       .max-w-sm.flex.items-center.justify-between
         %p Stoppers:
