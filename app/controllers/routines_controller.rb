@@ -88,7 +88,7 @@ class RoutinesController < ApplicationController
     tier = calculate_tier(@routine.target_days)
     Award.create(
       user: current_user,
-      title: "Completed routine target: #{@routine.title}",
+      title: "Completed routine's target: #{@routine.title}",
       awardable: @routine,
       tier:
     )
