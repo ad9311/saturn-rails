@@ -3,7 +3,7 @@ class RemindersController < ApplicationController
   before_action :reminder_params, only: %i[create]
 
   def index
-    @reminders = current_user.reminders.order(created_at: :desc)
+    @reminders = current_user.reminders.order('RANDOM()')
   end
 
   def show; end
