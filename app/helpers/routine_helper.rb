@@ -1,5 +1,15 @@
 module RoutineHelper
   def allow_submit_routine_report?(routine)
+    accept_submission?(routine)
+  end
+
+  def allow_submit_routine_setback?(routine)
+    accept_submission?(routine)
+  end
+
+  private
+
+  def accept_submission?(routine)
     today = Time.zone.today.strftime('%A').downcase
     current_date = Time.zone.now.to_date
     current_time = Time.zone.now

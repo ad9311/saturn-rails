@@ -3,6 +3,7 @@ class RoutinesController < ApplicationController
   before_action :routine_params, only: %i[create update]
 
   include Awards
+  include RoutineHelper
 
   def index
     @routines = current_user.routines.order(created_at: :desc)
@@ -55,34 +56,16 @@ class RoutinesController < ApplicationController
   end
 
   def submit_report
-    today = Time.zone.today.strftime('%A').downcase
-    current_date = Time.zone.now.to_date
-    last_report = @routine.last_report
-    last_setback = @routine.last_setback
-
-    redirect_to routine_path(@routine) and return unless @routine.days.include?(today)
-
-    redirect_to routine_path(@routine) and return if !last_report.nil? && last_report.to_date >= current_date
-
-    redirect_to routine_path(@routine) and return if !last_setback.nil? && last_setback.to_date >= current_date
+    redirect_to routine_path(@routine) and return unless allow_submit_routine_report?(@routine)
 
     update_report
-
     redirect_to routine_path(@routine)
   end
 
   def submit_setback
-    today = Time.zone.today.strftime('%A').downcase
-    current_date = Time.zone.now.to_date
+    redirect_to routine_path(@routine) and return unless allow_submit_routine_setback?(@routine)
+
     current_record_minus = @routine.current_record - 1
-    last_setback = @routine.last_setback
-
-    redirect_to routine_path(@routine) and return unless @routine.days.include?(today)
-
-    redirect_to routine_path(@routine) and return if !last_setback.nil? && last_setback.to_date >= current_date
-
-    redirect_to routine_path(@routine) and return if current_record_minus.negative?
-
     @routine.update(last_setback: Time.zone.now, current_record: current_record_minus)
     redirect_to routine_path(@routine)
   end
