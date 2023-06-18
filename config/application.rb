@@ -145,7 +145,8 @@ module SaturnApp
       weak: 105,
       powerful: 106,
       bored: 107,
-      indifferent: 108
+      indifferent: 108,
+      brave: 109
     }.freeze
 
     DAYS_OF_WEEK = %W[monday tuesday wednesday thursday friday saturday sunday].freeze
