@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # Devise
   devise_for :users, skip: [:registrations]
 
+  # Users
+  get 'users/account', to: 'users#account'
+
   # Dashboard
   resources :dashboard, only: %i[index]
 

@@ -1,6 +1,6 @@
 class RoutinesController < ApplicationController
-  before_action :set_routine, only: %i[show edit update destroy submit_report submit_setback bookmark unbookmark new_target submit_new_target]
-  before_action :routine_params, only: %i[create update routine_new_target_params]
+  before_action :set_routine, except: %i[index create new]
+  before_action :routine_params, only: %i[create update]
 
   include Awards
   include RoutineHelper

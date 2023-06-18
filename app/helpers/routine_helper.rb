@@ -10,7 +10,7 @@ module RoutineHelper
   def routine_day_selected?(routine, day)
     return false if routine.nil? || routine.days.nil?
 
-    return routine.days.include?(day)
+    routine.days.include?(day)
   end
 
   private
