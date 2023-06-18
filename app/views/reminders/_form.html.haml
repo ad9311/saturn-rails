@@ -1,0 +1,11 @@
+- unless @reminder.errors.messages.empty?
+  %p.text-xl.font-bold Errors:
+  %ul.mb-5
+    - @reminder.errors.messages.each_pair do |k, v|
+      %li.text-rose-600= "#{k.to_s.humanize} #{v.join(',')}"
+= form_for [@recovery, @reminder] do |f|
+  .form-group
+    = f.label :message
+    = f.text_area :message
+  .form-actions
+    = f.submit "Submit"

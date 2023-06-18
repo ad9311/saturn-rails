@@ -34,4 +34,7 @@ Rails.application.routes.draw do
   patch 'routines/:id/setback', to: 'routines#submit_setback'
   patch 'routines/:id/bookmark', to: 'routines#bookmark'
   patch 'routines/:id/unbookmark', to: 'routines#unbookmark'
+
+  # Reminders
+  resources :reminders
 end
