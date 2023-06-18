@@ -22,6 +22,9 @@
         %p Stoppers:
         %strong.number.text-xl.text-rose-500= recovery.stoppers.count
       .mt-4
+        - if recovery.completed?
+          .my-3.text-center
+            %p.text-xl.font-bold.text-green-500 Recovery completed!
         %span.text-sm.text-neutral-500 Progress:
         = render "progress_bar", progress:
     .mr-5.mt-5.flex.justify-end.text-sm.text-neutral-500

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_18_152855) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_18_172739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_152855) do
     t.datetime "updated_at", null: false
     t.integer "tier", default: 0, null: false
     t.index ["user_id"], name: "index_awards_on_user_id"
+  end
+
+  create_table "expense_lists", force: :cascade do |t|
+    t.string "title", null: false
+    t.float "total_expenses", default: 0.0, null: false
+    t.float "top_amount_allowed", null: false
+    t.float "balance", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_expense_lists_on_user_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.boolean "archived", default: false, null: false
+    t.float "amount"
+    t.string "description"
+    t.bigint "expense_list_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_list_id"], name: "index_expenses_on_expense_list_id"
   end
 
   create_table "recoveries", force: :cascade do |t|
@@ -115,6 +136,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_152855) do
   end
 
   add_foreign_key "awards", "users"
+  add_foreign_key "expense_lists", "users"
+  add_foreign_key "expenses", "expense_lists"
   add_foreign_key "recoveries", "users"
   add_foreign_key "reminders", "users"
   add_foreign_key "routines", "users"

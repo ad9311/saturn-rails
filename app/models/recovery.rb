@@ -42,6 +42,10 @@ class Recovery < ApplicationRecord
     bookmarked
   end
 
+  def completed?
+    completed
+  end
+
   private
 
   def calculate_target_days

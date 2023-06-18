@@ -1,10 +1,9 @@
-- target_days = @routine.target_days.nil? ? 0 : @routine.target_days
 - unless @routine.errors.messages.empty?
   %p.text-xl.font-bold Errors:
   %ul.mb-5
     - @routine.errors.messages.each_pair do |k, v|
       %li.text-rose-600= "#{k.to_s.humanize} #{v.join(',')}"
-= form_for @routine do |f|
+= form_for @routine, url: "/routines/#{@routine.id}/submit_new_target", method: :patch do |f|
   .form-group
     = f.label :title
     = f.text_field :title
@@ -19,6 +18,6 @@
         = label_tag "days_#{day}", day.titleize
   .form-group
     = f.label :target_days
-    = f.number_field :target_days, value: target_days, min: 0
+    = f.number_field :target_days, value: @routine.target_days, min: 0
   .form-actions
     = f.submit "Submit"

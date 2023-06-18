@@ -1,5 +1,5 @@
 class RoutinesController < ApplicationController
-  before_action :set_routine, only: %i[show edit update destroy submit_report submit_setback bookmark unbookmark]
+  before_action :set_routine, except: %i[index create new]
   before_action :routine_params, only: %i[create update]
 
   include Awards
@@ -68,6 +68,20 @@ class RoutinesController < ApplicationController
     current_record_minus = @routine.current_record - 1
     @routine.update(last_setback: Time.zone.now, current_record: current_record_minus)
     redirect_to routine_path(@routine)
+  end
+
+  def new_target
+    redirect_to routine_path(@routine) and return unless @routine.completed?
+  end
+
+  def submit_new_target
+    redirect_to routine_path(@routine) and return unless @routine.completed?
+
+    if @routine.update(**routine_params, current_record: 0, completed: false)
+      redirect_to routine_path(@routine)
+    else
+      render :new_target
+    end
   end
 
   private

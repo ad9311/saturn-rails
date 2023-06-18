@@ -17,6 +17,9 @@
     - unless routine.description.empty?
       .px-3.py-2.bg-neutral-100.rounded-md.border.border-neutral-300
         %p.break-all.text-neutral-600= routine.description
+  - if routine.completed?
+    .my-6.text-center
+      %p.text-xl.font-bold.text-green-500 Routine target reached!
   .mt-5.mb-2.pr-3.max-w-lg.flex.items-center.justify-end
     %span.text-xs Days
   .pr-5
@@ -36,6 +39,9 @@
     .mt-5.flex.items-center.justify-between
       = button_to "Submit report", "/routines/#{routine.id}/report", method: :patch, class: "px-3 py-2 text-white rounded-md bg-blue-400 hover:bg-blue-500 cursor-pointer"
       = button_to "Submit setback", "/routines/#{routine.id}/setback", method: :patch, class: "mr-5 px-3 py-2 text-white rounded-md bg-rose-500 hover:bg-rose-600 cursor-pointer"
+  - if routine.completed?
+    .mr-5.mt-5.flex.items-center.justify-end
+      = link_to "New target", "/routines/#{routine.id}/new_target", class: "px-3 py-2 text-white rounded bg-blue-400 hover:bg-blue-500"
   .mr-5.mt-5.flex.justify-end.text-sm.text-neutral-500
     %span Created on:&nbsp;
     %span.font-bold= routine.created_at.strftime('%d %B')

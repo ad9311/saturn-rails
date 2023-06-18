@@ -7,6 +7,12 @@ module RoutineHelper
     accept_submission?(routine)
   end
 
+  def routine_day_selected?(routine, day)
+    return false if routine.nil? || routine.days.nil?
+
+    routine.days.include?(day)
+  end
+
   private
 
   def accept_submission?(routine)
@@ -17,6 +23,8 @@ module RoutineHelper
     last_setback = routine.last_setback
 
     return false unless current_time.hour >= 22 && current_time.hour <= 23
+
+    return false if routine.completed?
 
     return false unless routine.days.include?(today)
 

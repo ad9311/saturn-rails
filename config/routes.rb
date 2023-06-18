@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # Devise
   devise_for :users, skip: [:registrations]
 
+  # Users
+  get 'users/account', to: 'users#account'
+
   # Dashboard
   resources :dashboard, only: %i[index]
 
@@ -34,6 +37,8 @@ Rails.application.routes.draw do
   patch 'routines/:id/setback', to: 'routines#submit_setback'
   patch 'routines/:id/bookmark', to: 'routines#bookmark'
   patch 'routines/:id/unbookmark', to: 'routines#unbookmark'
+  get 'routines/:id/new_target', to: 'routines#new_target'
+  patch 'routines/:id/submit_new_target', to: 'routines#submit_new_target'
 
   # Reminders
   resources :reminders
