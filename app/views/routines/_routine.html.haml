@@ -19,6 +19,9 @@
       %hr.my-3
       %p.mb-2 Days:
       = render "days", routine: routine
+      - if routine.completed?
+        .my-3.text-center
+          %p.text-xl.font-bold.text-green-500 Routine target reached!
     .mr-5.mt-5.flex.justify-end.text-sm.text-neutral-500
       %span Created on:&nbsp;
       %span.font-bold= routine.created_at.strftime('%d %B')
