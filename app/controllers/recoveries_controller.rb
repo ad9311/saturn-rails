@@ -5,6 +5,9 @@ class RecoveriesController < ApplicationController
   before_action :set_current_date, only: %i[show submit_report favorites]
   before_action :recovery_update_params, only: %i[update]
 
+  include Awards
+  include RecoveryHelper
+
   def index
     @recoveries = current_user.recoveries.order(created_at: :desc)
     @bookmarked_recoveries_count = current_user.recoveries.where(bookmarked: true).count
@@ -28,12 +31,9 @@ class RecoveriesController < ApplicationController
   end
 
   def submit_report
-    redirect_to recovery_path(@recovery) and return unless @current_date >= @recovery.start_date
+    redirect_to recovery_path(@recovery) and return unless allow_submit_recovery_report?(@recovery)
 
-    last_report = @recovery.report_dates.last&.to_date
-
-    update_report if last_report.nil? || @current_date > last_report
-
+    update_report
     redirect_to recovery_path(@recovery)
   end
 
@@ -68,7 +68,6 @@ class RecoveriesController < ApplicationController
 
   def unbookmark
     @recovery.update(bookmarked: false)
-
     redirect_to recovery_path(@recovery)
   end
 
@@ -91,9 +90,12 @@ class RecoveriesController < ApplicationController
 
     return unless completed
 
+    tier = calculate_tier(@recovery.target_days)
     Award.create(
-      user: current_user, title: "Completed recovery: #{@recovery.title}",
-      awardable: @recovery
+      user: current_user,
+      title: "Completed recovery: #{@recovery.title}",
+      awardable: @recovery,
+      tier:
     )
   end
 

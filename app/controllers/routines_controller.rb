@@ -1,6 +1,9 @@
 class RoutinesController < ApplicationController
-  before_action :set_routine, only: %i[show edit update destroy submit_report bookmark unbookmark]
+  before_action :set_routine, only: %i[show edit update destroy submit_report submit_setback bookmark unbookmark]
   before_action :routine_params, only: %i[create update]
+
+  include Awards
+  include RoutineHelper
 
   def index
     @routines = current_user.routines.order(created_at: :desc)
@@ -53,26 +56,43 @@ class RoutinesController < ApplicationController
   end
 
   def submit_report
-    today = Time.zone.today.strftime('%A').downcase
-    current_date = Time.zone.now.to_date
-    last_report = @routine.last_report
+    redirect_to routine_path(@routine) and return unless allow_submit_routine_report?(@routine)
 
-    redirect_to routine_path(@routine) and return unless @routine.days.include?(today)
+    update_report
+    redirect_to routine_path(@routine)
+  end
 
-    redirect_to routine_path(@routine) and return if !last_report.nil? && last_report.to_date >= current_date
+  def submit_setback
+    redirect_to routine_path(@routine) and return unless allow_submit_routine_setback?(@routine)
 
-    max_record = @routine.max_record
-    current_record_plus = @routine.current_record + 1
-    @routine.update(
-      max_record: [current_record_plus, max_record].max,
-      current_record: current_record_plus,
-      last_report: Time.zone.now
-    )
-
+    current_record_minus = @routine.current_record - 1
+    @routine.update(last_setback: Time.zone.now, current_record: current_record_minus)
     redirect_to routine_path(@routine)
   end
 
   private
+
+  def update_report
+    max_record = @routine.max_record
+    current_record_plus = @routine.current_record + 1
+    completed = current_record_plus == @routine.target_days
+    @routine.update(
+      max_record: [current_record_plus, max_record].max,
+      current_record: current_record_plus,
+      last_report: Time.zone.now,
+      completed:
+    )
+
+    return unless completed
+
+    tier = calculate_tier(@routine.target_days)
+    Award.create(
+      user: current_user,
+      title: "Completed routine's target: #{@routine.title}",
+      awardable: @routine,
+      tier:
+    )
+  end
 
   def set_routine
     @routine = Routine.find(params[:id])

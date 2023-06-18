@@ -9,6 +9,7 @@
 #  days           :jsonb            not null
 #  description    :text
 #  last_report    :datetime
+#  last_setback   :datetime
 #  max_record     :integer          default(0), not null
 #  target_days    :integer          not null
 #  title          :string           not null
