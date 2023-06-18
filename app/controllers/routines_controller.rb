@@ -1,5 +1,5 @@
 class RoutinesController < ApplicationController
-  before_action :set_routine, only: %i[show edit update destroy submit_report bookmark unbookmark]
+  before_action :set_routine, only: %i[show edit update destroy submit_report submit_setback bookmark unbookmark]
   before_action :routine_params, only: %i[create update]
 
   def index
@@ -56,10 +56,13 @@ class RoutinesController < ApplicationController
     today = Time.zone.today.strftime('%A').downcase
     current_date = Time.zone.now.to_date
     last_report = @routine.last_report
+    last_setback = @routine.last_setback
 
     redirect_to routine_path(@routine) and return unless @routine.days.include?(today)
 
     redirect_to routine_path(@routine) and return if !last_report.nil? && last_report.to_date >= current_date
+
+    redirect_to routine_path(@routine) and return if !last_setback.nil? && last_setback.to_date >= current_date
 
     max_record = @routine.max_record
     current_record_plus = @routine.current_record + 1
@@ -69,6 +72,19 @@ class RoutinesController < ApplicationController
       last_report: Time.zone.now
     )
 
+    redirect_to routine_path(@routine)
+  end
+
+  def submit_setback
+    current_date = Time.zone.now.to_date
+    current_record_minus = @routine.current_record - 1
+    last_setback = @routine.last_setback
+
+    redirect_to routine_path(@routine) and return if !last_setback.nil? && last_setback.to_date >= current_date
+
+    redirect_to routine_path(@routine) and return if current_record_minus.negative?
+
+    @routine.update(last_setback: Time.zone.now, current_record: current_record_minus)
     redirect_to routine_path(@routine)
   end
 
