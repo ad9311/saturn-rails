@@ -1,7 +1,6 @@
 class RoutinesController < ApplicationController
   before_action :set_routine, only: %i[show edit update destroy submit_report submit_setback bookmark unbookmark new_target submit_new_target]
-  before_action :routine_params, only: %i[create update]
-  before_action :routine_new_target_params, only: %i[routine_new_target_params]
+  before_action :routine_params, only: %i[create update routine_new_target_params]
 
   include Awards
   include RoutineHelper
@@ -78,10 +77,7 @@ class RoutinesController < ApplicationController
   def submit_new_target
     redirect_to routine_path(@routine) and return unless @routine.completed?
 
-    if @routine.update(**routine_new_target_params, current_record: 0, completed: false)
-      puts "#################################"
-      puts @routine.completed?
-      puts "#################################"
+    if @routine.update(**routine_params, current_record: 0, completed: false)
       redirect_to routine_path(@routine)
     else
       render :new_target
@@ -118,9 +114,5 @@ class RoutinesController < ApplicationController
 
   def routine_params
     params.require(:routine).permit(:title, :description, :target_days, days: [])
-  end
-
-  def routine_new_target_params
-    params.require(:routine).permit(:target_days, days: [])
   end
 end
