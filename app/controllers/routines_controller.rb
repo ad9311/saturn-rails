@@ -2,6 +2,8 @@ class RoutinesController < ApplicationController
   before_action :set_routine, only: %i[show edit update destroy submit_report submit_setback bookmark unbookmark]
   before_action :routine_params, only: %i[create update]
 
+  include Awards
+
   def index
     @routines = current_user.routines.order(created_at: :desc)
     @bookmarked_routines_count = current_user.routines.where(bookmarked: true).count
@@ -64,21 +66,18 @@ class RoutinesController < ApplicationController
 
     redirect_to routine_path(@routine) and return if !last_setback.nil? && last_setback.to_date >= current_date
 
-    max_record = @routine.max_record
-    current_record_plus = @routine.current_record + 1
-    @routine.update(
-      max_record: [current_record_plus, max_record].max,
-      current_record: current_record_plus,
-      last_report: Time.zone.now
-    )
+    update_report
 
     redirect_to routine_path(@routine)
   end
 
   def submit_setback
+    today = Time.zone.today.strftime('%A').downcase
     current_date = Time.zone.now.to_date
     current_record_minus = @routine.current_record - 1
     last_setback = @routine.last_setback
+
+    redirect_to routine_path(@routine) and return unless @routine.days.include?(today)
 
     redirect_to routine_path(@routine) and return if !last_setback.nil? && last_setback.to_date >= current_date
 
@@ -89,6 +88,28 @@ class RoutinesController < ApplicationController
   end
 
   private
+
+  def update_report
+    max_record = @routine.max_record
+    current_record_plus = @routine.current_record + 1
+    completed = current_record_plus == @routine.target_days
+    @routine.update(
+      max_record: [current_record_plus, max_record].max,
+      current_record: current_record_plus,
+      last_report: Time.zone.now,
+      completed:
+    )
+
+    return unless completed
+
+    tier = calculate_tier(@routine.target_days)
+    Award.create(
+      user: current_user,
+      title: "Completed routine target: #{@routine.title}",
+      awardable: @routine,
+      tier:
+    )
+  end
 
   def set_routine
     @routine = Routine.find(params[:id])
