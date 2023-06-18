@@ -37,9 +37,13 @@ class RecoveriesController < ApplicationController
     redirect_to recovery_path(@recovery)
   end
 
-  def renew; end
+  def renew
+    redirect_to recovery_path(@recovery) and return unless @recovery.completed?
+  end
 
   def submit_renew
+    redirect_to recovery_path(@recovery) and return unless @recovery.completed?
+
     @recovery.update(**recovery_renew_params, current_record: 0, completed: false)
     redirect_to recovery_path(@recovery)
   end

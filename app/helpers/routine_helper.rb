@@ -18,6 +18,8 @@ module RoutineHelper
 
     return false unless current_time.hour >= 22 && current_time.hour <= 23
 
+    return false if routine.completed?
+
     return false unless routine.days.include?(today)
 
     return false if !last_report.nil? && last_report.to_date >= current_date

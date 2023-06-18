@@ -6,7 +6,7 @@ module RecoveryHelper
 
     return false unless current_time.hour >= 22 && current_time.hour <= 23
 
-    return false if recovery.completed
+    return false if recovery.completed?
 
     return false unless current_date >= recovery.start_date
 

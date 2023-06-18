@@ -39,6 +39,10 @@ class Routine < ApplicationRecord
     bookmarked
   end
 
+  def completed?
+    completed
+  end
+
   private
 
   def validate_days
