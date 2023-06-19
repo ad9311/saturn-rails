@@ -1,5 +1,7 @@
 .mt-3.mb-5
   .flex.items-center
+    = link_to thoughts_path, class: "block mr-3" do
+      = image_tag "arrow.svg", alt: "back", class: "w-8"
     %h2.text-2xl.font-bold Thoughts
     = link_to new_thought_path, class: "block ml-3" do
       = image_tag "plus.svg", alt: "back", class: "w-8"
