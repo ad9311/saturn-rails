@@ -2,14 +2,14 @@
 #
 # Table name: budgets
 #
-#  id                 :bigint           not null, primary key
-#  balance            :float            not null
-#  title              :string           not null
-#  top_amount_allowed :float            not null
-#  total_expenses     :float            default(0.0), not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  user_id            :bigint           not null
+#  id             :bigint           not null, primary key
+#  amount         :float            not null
+#  balance        :float            not null
+#  title          :string           not null
+#  total_expenses :float            default(0.0), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #
@@ -24,7 +24,7 @@ class Budget < ApplicationRecord
   has_many :expenses, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 50 }
-  validates :top_amount_allowed, presence: true, numericality: { greater_than: 0.0 }
+  validates :amount, presence: true, numericality: { greater_than: 0.0 }
   validates :total_expenses, presence: true, numericality: { greater_than_or_equal_to: 0.0 }
 
   before_create :set_balance
@@ -33,6 +33,6 @@ class Budget < ApplicationRecord
   private
 
   def set_balance
-    self.balance = top_amount_allowed - total_expenses
+    self.balance = amount - total_expenses
   end
 end

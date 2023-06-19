@@ -4,7 +4,7 @@
     .pr-5
       .my-3.max-w-sm.flex.items-center.justify-between
         %p Top amount:
-        %strong.number.text-xl.text-blue-500= number_to_currency(budget.top_amount_allowed, precision: 2, delimiter: ',', separator: '.')
+        %strong.number.text-xl.text-blue-500= number_to_currency(budget.amount, precision: 2, delimiter: ',', separator: '.')
       .my-3.max-w-sm.flex.items-center.justify-between
         %p Expenses:
         %strong.number.text-xl.text-rose-500= number_to_currency(budget.total_expenses, precision: 2, delimiter: ',', separator: '.')

@@ -1,4 +1,4 @@
-- value = @budget.top_amount_allowed.nil? ? 0 : @budget.top_amount_allowed
+- value = @budget.amount.nil? ? 0 : @budget.amount
 - unless @budget.errors.messages.empty?
   %p.text-xl.font-bold Errors:
   %ul.mb-5
@@ -9,7 +9,7 @@
     = f.label :title
     = f.text_field :title
   .form-group
-    = f.label :top_amount_allowed
-    = f.number_field :top_amount_allowed, min: 0, step: 0.5, value:
+    = f.label :amount
+    = f.number_field :amount, min: 0, step: 0.5, value:
   .form-actions
     = f.submit "Submit"

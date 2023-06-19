@@ -9,7 +9,7 @@
       %h3.text-xl.font-bold= budget.title
     .my-3.max-w-sm.flex.items-center.justify-between
       %p Top amount:
-      %strong.number.text-xl.text-blue-500= number_to_currency(budget.top_amount_allowed, precision: 2, delimiter: ',', separator: '.')
+      %strong.number.text-xl.text-blue-500= number_to_currency(budget.amount, precision: 2, delimiter: ',', separator: '.')
     - unless budget.expenses.blank?
       %ul.my-5.px-3.py-2.bg-neutral-100.rounded-md.border.border-neutral-300
         - budget.expenses.each do |expense|
