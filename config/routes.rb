@@ -44,10 +44,10 @@ Rails.application.routes.draw do
   resources :reminders
 
   # Expense Lists
-  resources :expense_lists
+  resources :budgets
 
   # Expenses
-  resources :expense_lists do
+  resources :budgets do
     resources :expenses, except: %i[index]
   end
 end

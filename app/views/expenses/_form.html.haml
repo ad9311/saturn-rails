@@ -4,7 +4,7 @@
   %ul.mb-5
     - @expense.errors.messages.each_pair do |k, v|
       %li.text-rose-600= "#{k.to_s.humanize} #{v.join(',')}"
-= form_for [@expense_list, @expense] do |f|
+= form_for [@budget, @expense] do |f|
   .form-group
     = f.label :description
     = f.text_field :description

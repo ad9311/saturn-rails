@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_18_172739) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_232017) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_172739) do
     t.index ["user_id"], name: "index_awards_on_user_id"
   end
 
-  create_table "expense_lists", force: :cascade do |t|
+  create_table "budgets", force: :cascade do |t|
     t.string "title", null: false
     t.float "total_expenses", default: 0.0, null: false
     t.float "top_amount_allowed", null: false
@@ -33,17 +33,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_172739) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_expense_lists_on_user_id"
+    t.index ["user_id"], name: "index_budgets_on_user_id"
   end
 
   create_table "expenses", force: :cascade do |t|
     t.boolean "archived", default: false, null: false
     t.float "amount"
     t.string "description"
-    t.bigint "expense_list_id", null: false
+    t.bigint "budget_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["expense_list_id"], name: "index_expenses_on_expense_list_id"
+    t.index ["budget_id"], name: "index_expenses_on_budget_id"
   end
 
   create_table "recoveries", force: :cascade do |t|
@@ -127,8 +127,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_172739) do
   end
 
   add_foreign_key "awards", "users"
-  add_foreign_key "expense_lists", "users"
-  add_foreign_key "expenses", "expense_lists"
+  add_foreign_key "budgets", "users"
+  add_foreign_key "expenses", "budgets"
   add_foreign_key "recoveries", "users"
   add_foreign_key "reminders", "users"
   add_foreign_key "routines", "users"

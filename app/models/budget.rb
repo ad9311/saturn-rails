@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: expense_lists
+# Table name: budgets
 #
 #  id                 :bigint           not null, primary key
 #  balance            :float            not null
@@ -13,13 +13,13 @@
 #
 # Indexes
 #
-#  index_expense_lists_on_user_id  (user_id)
+#  index_budgets_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class ExpenseList < ApplicationRecord
+class Budget < ApplicationRecord
   belongs_to :user
   has_many :expenses, dependent: :destroy
 

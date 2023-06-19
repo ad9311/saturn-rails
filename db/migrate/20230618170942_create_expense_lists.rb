@@ -1,6 +1,6 @@
 class CreateExpenseLists < ActiveRecord::Migration[7.0]
   def change
-    create_table :expense_lists do |t|
+    create_table :budgets do |t|
       t.string :title, null: false
       t.float :total_expenses, null: false, default: 0.0
       t.float :top_amount_allowed, null: false
