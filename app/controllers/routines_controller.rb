@@ -1,5 +1,5 @@
 class RoutinesController < ApplicationController
-  before_action :set_routine, except: %i[index create new]
+  before_action :set_routine, except: %i[index create new favorites]
   before_action :routine_params, only: %i[create update]
 
   include Awards

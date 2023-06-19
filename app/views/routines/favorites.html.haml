@@ -1,5 +1,7 @@
 .mt-3.mb-5
   .flex.items-center
+    = link_to routines_path, class: "block mr-3" do
+      = image_tag "arrow.svg", alt: "back", class: "w-8"
     %h2.text-2xl.font-bold Routines
     = link_to new_routine_path, class: "block ml-3" do
       = image_tag "plus.svg", alt: "back", class: "w-8"
