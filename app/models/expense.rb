@@ -21,18 +21,25 @@
 class Expense < ApplicationRecord
   belongs_to :expense_list
 
-  validates :description, presence: true, length: { maximum: 50 }
+  validates :description, presence: true, length: { maximum: 20 }
   validates :amount, presence: true, numericality: { greater_than: 0 }
 
-  after_create :update_expense_list_balance
+  after_create :add_to_expense_list_balance
+  before_destroy :substract_to_expense_list_balance
 
   private
 
-  def update_expense_list_balance
-    old_balance = expense_list.balance
-    new_balance = old_balance - amount
-    old_total_expenses = expense_list.total_expenses
-    new_total_exepnses = old_total_expenses + amount
-    expense_list.update(balance: new_balance, total_expenses: new_total_exepnses)
+  def add_to_expense_list_balance
+    expense_list.update(
+      balance: expense_list.balance - amount,
+      total_expenses: expense_list.total_expenses + amount
+    )
+  end
+
+  def substract_to_expense_list_balance
+    expense_list.update(
+      balance: expense_list.balance - amount,
+      total_expenses: expense_list.total_expenses - amount
+    )
   end
 end

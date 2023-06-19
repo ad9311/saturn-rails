@@ -45,4 +45,9 @@ Rails.application.routes.draw do
 
   # Expense Lists
   resources :expense_lists
+
+  # Expenses
+  resources :expense_lists do
+    resources :expenses, except: %i[index]
+  end
 end
