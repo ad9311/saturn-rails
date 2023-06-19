@@ -1,0 +1,20 @@
+= link_to budget_path(budget), class: "block max-w-sm" do
+  %article.pl-5.py-5.rounded-md.border.border-2.border-neutral-300.bg-white.hover:bg-neutral-50.hover:border-neutral-500
+    %h3.text-xl.font-bold= budget.title
+    .pr-5
+      .my-3.max-w-sm.flex.items-center.justify-between
+        %p Top amount:
+        %strong.number.text-xl.text-blue-500= number_to_currency(budget.amount, precision: 2, delimiter: ',', separator: '.')
+      .my-3.max-w-sm.flex.items-center.justify-between
+        %p Expenses:
+        %strong.number.text-xl.text-rose-500= number_to_currency(budget.total_expenses, precision: 2, delimiter: ',', separator: '.')
+      %hr.my-3
+      .max-w-sm.flex.items-center.justify-between
+        %p Balance:
+        - if budget.balance.positive?
+          %strong.number.text-xl.text-green-500= number_to_currency(budget.balance, precision: 2, delimiter: ',', separator: '.')
+        - else 
+          %strong.number.text-xl.text-rose-500= number_to_currency(budget.balance, precision: 2, delimiter: ',', separator: '.')
+    .mr-5.mt-5.flex.justify-end.text-sm.text-neutral-500
+      %span Created on:&nbsp;
+      %span.font-bold= budget.created_at.strftime('%d %B')

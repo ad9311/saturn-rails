@@ -39,7 +39,7 @@ body {
 }
 
 .form-actions input {
-  @apply px-2 py-1 text-white rounded bg-blue-500 hover:bg-blue-600 cursor-pointer;
+  @apply px-3 py-2 text-white rounded-md bg-blue-500 hover:bg-blue-600 cursor-pointer;
 }
 
 .number {
@@ -48,4 +48,20 @@ body {
 
 .pagination {
   transform: translate(-50%, 0);
+}
+
+.button {
+  @apply px-3 py-2 rounded-md cursor-pointer;
+}
+
+.bg-green {
+  @apply text-white bg-green-500 hover:bg-green-600;
+}
+
+.bg-blue {
+  @apply text-white bg-blue-500 hover:bg-blue-600;
+}
+
+.bg-rose {
+  @apply text-white bg-rose-500 hover:bg-rose-600;
 }

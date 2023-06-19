@@ -1,4 +1,4 @@
-= link_to expense_list_expense_path(expense_list, expense), class: "block max-w-sm" do
+= link_to budget_expense_path(budget, expense), class: "block max-w-sm" do
   .px-2.py-1.flex.items-center.justify-between.rounded-md.hover:bg-white
     %p.text-neutral-500.truncate= expense.description
     %span.text-rose-500.text-sm.number= number_to_currency(expense.amount, precision: 2, delimiter: ',', separator: '.')

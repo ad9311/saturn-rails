@@ -5,6 +5,6 @@ class DashboardController < ApplicationController
     @thoughts_count = current_user.thoughts.count
     @recoveries_count = current_user.recoveries.count
     @routines_count = current_user.routines.count
-    @expense_lists_count = current_user.expense_lists.count
+    @budgets_count = current_user.budgets.count
   end
 end
