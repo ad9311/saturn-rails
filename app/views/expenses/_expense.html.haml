@@ -2,21 +2,3 @@
   .px-2.py-1.flex.items-center.justify-between.rounded-md.hover:bg-white
     %p.text-neutral-500.truncate= expense.description
     %span.text-rose-500.text-sm.number= number_to_currency(expense.amount, precision: 2, delimiter: ',', separator: '.')
-  -# %h3.text-xl.font-bold= expense_list.title
-  -# .pr-5
-  -#   .my-3.max-w-sm.flex.items-center.justify-between
-  -#     %p Top amount:
-  -#     %strong.number.text-xl.text-blue-500= number_to_currency(expense_list.top_amount_allowed, precision: 2, delimiter: ',', separator: '.')
-  -#   .my-3.max-w-sm.flex.items-center.justify-between
-  -#     %p Expenses:
-  -#     %strong.number.text-xl.text-rose-500= number_to_currency(expense_list.total_expenses, precision: 2, delimiter: ',', separator: '.')
-  -#   %hr.my-3
-  -#   .max-w-sm.flex.items-center.justify-between
-  -#     %p Balance:
-  -#     - if expense_list.balance.positive?
-  -#       %strong.number.text-xl.text-green-500= number_to_currency(expense_list.balance, precision: 2, delimiter: ',', separator: '.')
-  -#     - else 
-  -#       %strong.number.text-xl.text-rose-500= number_to_currency(expense_list.balance, precision: 2, delimiter: ',', separator: '.')
-  -# .mr-5.mt-5.flex.justify-end.text-sm.text-neutral-500
-  -#   %span Created on:&nbsp;
-  -#   %span.font-bold= expense_list.created_at.strftime('%d %B')
