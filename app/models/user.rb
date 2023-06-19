@@ -33,4 +33,5 @@ class User < ApplicationRecord
   has_many :awards, dependent: :destroy
   has_many :routines, dependent: :destroy
   has_many :reminders, dependent: :destroy
+  has_many :expense_lists, dependent: :destroy
 end

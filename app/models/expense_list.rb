@@ -28,10 +28,11 @@ class ExpenseList < ApplicationRecord
   validates :total_expenses, presence: true, numericality: { greater_than_or_equal_to: 0.0 }
 
   before_create :set_balance
+  before_update :set_balance
 
   private
 
   def set_balance
-    self.balance = top_amount_allowed
+    self.balance = top_amount_allowed - total_expenses
   end
 end
