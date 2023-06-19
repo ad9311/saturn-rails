@@ -42,4 +42,7 @@ Rails.application.routes.draw do
 
   # Reminders
   resources :reminders
+
+  # Expense Lists
+  resources :expense_lists
 end
