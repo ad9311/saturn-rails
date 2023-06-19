@@ -25,7 +25,7 @@ class Expense < ApplicationRecord
   validates :amount, presence: true, numericality: { greater_than: 0 }
 
   after_create :add_to_budget_balance
-  before_destroy :substract_to_budget_balance
+  before_destroy :substract_from_budget_balance
 
   private
 
@@ -36,7 +36,7 @@ class Expense < ApplicationRecord
     )
   end
 
-  def substract_to_budget_balance
+  def substract_from_budget_balance
     budget.update(
       balance: budget.balance - amount,
       total_expenses: budget.total_expenses - amount
