@@ -1,5 +1,5 @@
 class RoutinesController < ApplicationController
-  before_action :set_routine, except: %i[index create new favorites]
+  before_action :set_routine, except: %i[index create new favorites destroy_all]
   before_action :routine_params, only: %i[create update]
 
   include Awards
@@ -65,8 +65,7 @@ class RoutinesController < ApplicationController
   def submit_setback
     redirect_to routine_path(@routine) and return unless allow_submit_routine_setback?(@routine)
 
-    current_record_minus = @routine.current_record - 1
-    @routine.update(last_setback: Time.zone.now, current_record: current_record_minus)
+    @routine.update(last_setback: Time.zone.now)
     redirect_to routine_path(@routine)
   end
 
@@ -82,6 +81,11 @@ class RoutinesController < ApplicationController
     else
       render :new_target
     end
+  end
+
+  def destroy_all
+    current_user.routines.destroy_all
+    redirect_to root_path
   end
 
   private

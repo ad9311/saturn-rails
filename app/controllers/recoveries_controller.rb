@@ -79,6 +79,11 @@ class RecoveriesController < ApplicationController
     @recoveries = current_user.recoveries.where(bookmarked: true).order(created_at: :desc)
   end
 
+  def destroy_all
+    current_user.recoveries.destroy_all
+    redirect_to root_path
+  end
+
   private
 
   def update_report

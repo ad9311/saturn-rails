@@ -51,6 +51,11 @@ class ThoughtsController < ApplicationController
     @thoughts = current_user.thoughts.where(bookmarked: true).order(created_at: :desc).page params[:page]
   end
 
+  def destroy_all
+    current_user.thoughts.destroy_all
+    redirect_to root_path
+  end
+
   private
 
   def thought_params

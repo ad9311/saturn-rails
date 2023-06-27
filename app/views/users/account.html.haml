@@ -3,5 +3,22 @@
     = link_to root_path, class: "block mr-3" do
       = image_tag "arrow.svg", alt: "back", class: "w-8"
     %h2.text-2xl.font-bold Account
+%nav
+  %ul
+    %li
+      %p Delete all reminders
+      = button_to "Delete", "/reminders/all", method: :delete, class: "button bg-rose"
+    %li
+      %p Delete all thoughts
+      = button_to "Delete", "/thoughts/all", method: :delete, class: "button bg-rose"
+    %li
+      %p Delete all recoveries
+      = button_to "Delete", "/recoveries/all", method: :delete, class: "button bg-rose"
+    %li
+      %p Delete all routines
+      = button_to "Delete", "/routines/all", method: :delete, class: "button bg-rose"
+    -# %li
+    -#   %p Delete all budgets
+    -#   = button_to "Logout", destroy_user_session_path, method: :delete, class: "button bg-rose"
 .mt-10.w-fit.m-auto
-  = button_to "Logout", destroy_user_session_path, method: :delete, class: "px-3 py-2 text-white rounded-md bg-rose-500 hover:bg-rose-600 cursor-pointer"
+  = button_to "Logout", destroy_user_session_path, method: :delete, class: "button bg-rose"
