@@ -81,7 +81,7 @@ class RecoveriesController < ApplicationController
 
   def destroy_all
     current_user.recoveries.destroy_all
-    redirect_to root_path
+    redirect_to users_account_path
   end
 
   private
