@@ -36,6 +36,11 @@ class RemindersController < ApplicationController
     redirect_to reminders_path
   end
 
+  def destroy_all
+    current_user.reminders.destroy_all
+    redirect_to users_account_path
+  end
+
   private
 
   def set_reminder

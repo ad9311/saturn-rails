@@ -14,10 +14,12 @@ Rails.application.routes.draw do
   get 'thoughts/favorites', to: 'thoughts#favorites'
   patch 'thoughts/:id/bookmark', to: 'thoughts#bookmark'
   patch 'thoughts/:id/unbookmark', to: 'thoughts#unbookmark'
+  delete 'thoughts/all', to: 'thoughts#destroy_all'
   resources :thoughts, only: %i[index new edit create destroy update]
 
   # Recoveries
   get 'recoveries/favorites', to: 'recoveries#favorites'
+  delete 'recoveries/all', to: 'recoveries#destroy_all'
   resources :recoveries
   patch 'recoveries/:id/report', to: 'recoveries#submit_report'
   get 'recoveries/:id/renew', to: 'recoveries#renew'
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
 
   # Routines
   get 'routines/favorites', to: 'routines#favorites'
+  delete 'routines/all', to: 'routines#destroy_all'
   resources :routines
   patch 'routines/:id/report', to: 'routines#submit_report'
   patch 'routines/:id/setback', to: 'routines#submit_setback'
@@ -41,9 +44,10 @@ Rails.application.routes.draw do
   patch 'routines/:id/submit_new_target', to: 'routines#submit_new_target'
 
   # Reminders
+  delete 'reminders/all', to: 'reminders#destroy_all'
   resources :reminders
 
-  # Expense Lists
+  # Budgets
   resources :budgets
 
   # Expenses
