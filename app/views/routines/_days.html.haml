@@ -1,4 +1,4 @@
 .px-3.bg-neutral-100.rounded-md.border.border-neutral-300
   .text-center
-    -SaturnApp::Constants::DAYS_OF_WEEK.each do |day|
+    - Saturn::Constants::DAYS_OF_WEEK.each do |day|
       %span.px-1{ class: routine.days.include?(day) ? "font-bold underline" : "" }= day.titleize[0,3]

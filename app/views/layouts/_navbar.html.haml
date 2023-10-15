@@ -1,10 +1,10 @@
 %header.sticky.top-0.w-full.bg-gradient-to-r.from-blue-950.to-blue-500
   .container.p-3.mx-auto
     .flex.items-center.justify-between
-      = link_to root_path, title: "SaturnApp" do
+      = link_to root_path, title: "Saturn" do
         .flex.items-center
-          = image_tag "saturn.svg", alt: "saturn-app", class: "w-12"
-          %h1.text-transparent SaturnApp
+          = image_tag "saturn.svg", alt: "saturn", class: "w-12"
+          %h1.text-transparent Saturn
       - if user_signed_in?
         = link_to users_account_path do
           .mt-1.rounded-full.bg-blue-200.p-1

@@ -24,7 +24,7 @@ class Thought < ApplicationRecord
   validates :message, presence: true, length: { maximum: 1000 }
   validates :mood, presence: true
 
-  enum mood: SaturnApp::Constants::MOODS
+  enum mood: Saturn::Constants::MOODS
 
   def bookmarked?
     bookmarked

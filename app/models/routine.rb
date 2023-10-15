@@ -48,7 +48,7 @@ class Routine < ApplicationRecord
   def validate_days
     errors.add(:days, 'cannot be empty') and return if days.blank?
 
-    days_of_week = SaturnApp::Constants::DAYS_OF_WEEK
+    days_of_week = Saturn::Constants::DAYS_OF_WEEK
     foreign_entries = days - days_of_week
     errors.add(:days, 'can only contain days of the week') unless foreign_entries.empty?
   end

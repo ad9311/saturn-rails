@@ -1,1 +1,1 @@
-# ![saturn](./public/favicon.ico) SaturnApp
+# ![saturn](./public/favicon.ico) Saturn

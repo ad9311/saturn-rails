@@ -25,5 +25,5 @@ class Stopper < ApplicationRecord
   validates :datetime, presence: true
   validates :mood, presence: true
 
-  enum mood: SaturnApp::Constants::MOODS
+  enum mood: Saturn::Constants::MOODS
 end
